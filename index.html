@@ -10,10 +10,93 @@
 </head>
 <body>
     <div class="container animated fadeIn">
-        <h1>hello, i'm flora</h1>
-        <p>i'm a first-year student at the <strong>university of washington</strong>, pursuing <strong>computer science</strong> & a minor in neural computation and engineering. 💻</p>
-        <p>get in touch: <a href="mailto:fyasmin@cs.washington.edu" class="pink">fyasmin@cs.washington.edu</a></p>
-        <p>let's connect on <a href="https://linkedin.com/in/florayasmin" class="blue" target="_blank">linkedin</a></p>
+        <div class="hero">
+            <h1>
+                hi! i'm flora, <br>
+                <span class="typing-container">
+                    <span id="typed-text"></span>
+                    <span class="cursor">|</span>
+                </span>
+            </h1>
+        </div>
+
+        <div class="about-section">
+            <p>i'm a first-year at the <strong>university of washington</strong>, pursuing <strong>computer science</strong> & a minor in neural computation and engineering.</p>
+        </div>
     </div>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <p>let's connect!</p>
+            <div class="social-links">
+                <a href="mailto:fyasmin@cs.washington.edu" class="social-icon" title="Email">
+                    <i class="fas fa-envelope"></i>
+                </a>
+                <a href="https://linkedin.com/in/florayasmin" class="social-icon" target="_blank" title="LinkedIn">
+                    <i class="fab fa-linkedin"></i>
+                </a>
+                <a href="https://github.com/florayasmin" class="social-icon" target="_blank" title="GitHub">
+                    <i class="fab fa-github"></i>
+                </a>
+            </div>
+            <p class="footer-text">made with 💖 by flora</p>
+        </div>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script>
+        const phrases = [
+            "a designer",
+            "a developer",
+            "a curious student",
+            "a future software engineer",
+            "a linguaphile"
+        ];
+        
+        let phraseIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+        let typingSpeed = 100;
+        
+        function type() {
+            const currentPhrase = phrases[phraseIndex];
+            
+            if (isDeleting) {
+                $('#typed-text').text(currentPhrase.substring(0, charIndex - 1));
+                charIndex--;
+                typingSpeed = 50;
+            } else {
+                $('#typed-text').text(currentPhrase.substring(0, charIndex + 1));
+                charIndex++;
+                typingSpeed = 100;
+            }
+            
+            if (!isDeleting && charIndex === currentPhrase.length) {
+                typingSpeed = 2000; // pause at end
+                isDeleting = true;
+            } else if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                phraseIndex = (phraseIndex + 1) % phrases.length;
+                typingSpeed = 500; // pause before next phrase
+            }
+            
+            setTimeout(type, typingSpeed);
+        }
+        
+        // theme toggle
+        $(document).ready(function() {
+            type(); // start typing effect
+            
+            $('#themeToggle').click(function() {
+                $('body').toggleClass('light-mode');
+                
+                if ($('body').hasClass('light-mode')) {
+                    $('#themeText').text('dark mode');
+                } else {
+                    $('#themeText').text('light mode');
+                }
+            });
+        });
+    </script>
 </body>
 </html>

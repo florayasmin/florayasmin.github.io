@@ -69,26 +69,17 @@ p {
     color: #ff69b4;
     font-weight: 600;
     font-style: italic;
-    position: relative;
     display: inline-block;
-    overflow: hidden;
-}
-
-.coming-soon::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.6), transparent);
-    animation: shimmer 2.5s infinite;
-    pointer-events: none;
+    animation: shimmer 2s ease-in-out infinite;
 }
 
 @keyframes shimmer {
-    100% {
-        left: 100%;
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.4;
+        text-shadow: 0 0 10px rgba(255, 105, 180, 0.8);
     }
 }
 

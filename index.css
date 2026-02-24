@@ -28,6 +28,7 @@ body.light-mode {
 
 .hero {
     margin-bottom: 60px;
+    text-align: center; /* center the header text at the top */
 }
 
 h1 {

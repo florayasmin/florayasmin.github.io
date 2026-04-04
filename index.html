@@ -3,101 +3,166 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Flora Yasmin</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <title>flora</title>
     <link rel="stylesheet" href="index.css">
 </head>
 <body>
-    <div class="container animated fadeIn">
-        <div class="hero">
-            <h1>
-                hi! i'm flora,
-                <span class="typing-container">
-                    <span id="typed-text"></span>
-                    <span class="cursor">|</span>
-                </span>
-            </h1>
+
+<div class="app">
+
+    <!-- Main scrollable view -->
+    <div class="main-view" id="mainView">
+
+        <!-- Profile Banner -->
+        <div class="profile-banner">
+            <div class="profile-header">
+                <div class="profile-avatar">
+                    <img src="me.jpg" alt="flora" onerror="this.style.display='none'">
+                </div>
+                <div class="profile-details">
+                    <span class="profile-label">Profile</span>
+                    <h1 class="profile-name">flora</h1>
+                    <div class="profile-meta">
+                        <span>B.S. Computer Science</span>
+                        <span class="dot">•</span>
+                        <span>Minor in Neural Computation &amp; Engineering</span>
+                        <span class="dot">•</span>
+                        <span>University of Washington</span>
+                    </div>
+                </div>
+            </div>
         </div>
 
-        <div class="about-section">
-            <p>i'm an undergraduate student at the <strong>university of washington</strong>, pursuing <strong>computer science</strong> & a minor in <strong>neural computation and engineering.</strong> 🧠</p>
-            <p>i love creating things that blend <strong>design</strong> and <strong>impact</strong>, exploring new cultural communities & languages, teaching, and competing in hackathons. i'm focused on <strong>ai/ml</strong> and <strong>software engineering</strong>, typically building with java, python, react, and html/css/js.</p>
-            <p><strong>based in:</strong> seattle, wa</p>
+        <!-- Main Content -->
+        <div class="content">
+
+            <!-- Work Experience Section -->
+            <section class="section">
+                <div class="section-header">
+                    <h2>Work Experience</h2>
+                    <button class="show-all-btn">Show all</button>
+                </div>
+                <div class="cards-row" id="cardsRow"></div>
+            </section>
+
+            <!-- Footer -->
+            <div class="footer">
+                <p class="footer-label">let's connect</p>
+                <div class="footer-links">
+                    <a href="mailto:fyasmin@cs.washington.edu">email</a>
+                    <a href="https://linkedin.com/in/florayasmin" target="_blank" rel="noopener">linkedin</a>
+                    <a href="https://github.com/florayasmin" target="_blank" rel="noopener">github</a>
+                </div>
+                <p class="footer-credit">made with ♥ by flora</p>
+            </div>
+
         </div>
     </div>
 
-    <footer class="footer">
-        <div class="footer-content">
-            <p>let's connect!</p>
-            <div class="social-links">
-                <a href="mailto:fyasmin@cs.washington.edu" class="social-icon" title="Email">
-                    <i class="fas fa-envelope"></i>
-                </a>
-                <a href="https://linkedin.com/in/florayasmin" class="social-icon" target="_blank" title="LinkedIn">
-                    <i class="fab fa-linkedin"></i>
-                </a>
-                <a href="https://github.com/florayasmin" class="social-icon" target="_blank" title="GitHub">
-                    <i class="fab fa-github"></i>
-                </a>
-            </div>
-            <p class="footer-text">made with 💖 by flora</p>
-        </div>
-    </footer>
+    <!-- Right Detail Panel -->
+    <div class="detail-panel" id="detailPanel">
+        <button class="panel-close" id="panelClose" aria-label="Close">✕</button>
+        <div class="panel-inner" id="panelInner"></div>
+    </div>
 
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
-    <script>
-        const phrases = [
-            "a developer",
-            "a designer",
-            "a problem solver",
-            "a linguaphile"
-        ];
-        
-        let phraseIndex = 0;
-        let charIndex = 0;
-        let isDeleting = false;
-        let typingSpeed = 100;
-        
-        function type() {
-            const currentPhrase = phrases[phraseIndex];
-            
-            if (isDeleting) {
-                $('#typed-text').text(currentPhrase.substring(0, charIndex - 1));
-                charIndex--;
-                typingSpeed = 50;
-            } else {
-                $('#typed-text').text(currentPhrase.substring(0, charIndex + 1));
-                charIndex++;
-                typingSpeed = 100;
-            }
-            
-            if (!isDeleting && charIndex === currentPhrase.length) {
-                typingSpeed = 2000; // pause at end
-                isDeleting = true;
-            } else if (isDeleting && charIndex === 0) {
-                isDeleting = false;
-                phraseIndex = (phraseIndex + 1) % phrases.length;
-                typingSpeed = 500; // pause before next phrase
-            }
-            
-            setTimeout(type, typingSpeed);
+</div>
+
+<script>
+    const experiences = [
+        {
+            company: "Company A",
+            role: "Software Engineering Intern",
+            period: "Jun 2024 – Sep 2024",
+            color: "#4a7c59",
+            description: "Replace this with what you worked on, what you built, and the impact it had.",
+            skills: ["Python", "React", "AWS"]
+        },
+        {
+            company: "Company B",
+            role: "Research Assistant",
+            period: "Jan 2024 – Jun 2024",
+            color: "#3d5a80",
+            description: "Replace this with what you researched and any publications or outcomes.",
+            skills: ["Python", "PyTorch", "ML"]
+        },
+        {
+            company: "Company C",
+            role: "Teaching Assistant",
+            period: "Sep 2023 – Dec 2023",
+            color: "#7b4f9e",
+            description: "Replace this with the course you TAed and what you did.",
+            skills: ["Java", "Teaching", "Mentorship"]
+        },
+        {
+            company: "Company D",
+            role: "Product Design Intern",
+            period: "Jun 2023 – Aug 2023",
+            color: "#b5451b",
+            description: "Replace this with your product work and design decisions.",
+            skills: ["Figma", "User Research", "Agile"]
+        },
+        {
+            company: "Company E",
+            role: "Software Developer",
+            period: "Jan 2023 – May 2023",
+            color: "#5c4033",
+            description: "Replace this with what you shipped and who used it.",
+            skills: ["JavaScript", "Node.js", "SQL"]
         }
-        
-        // theme toggle
-        $(document).ready(function() {
-            type(); // start typing effect
-            
-            $('#themeToggle').click(function() {
-                $('body').toggleClass('light-mode');
-                
-                if ($('body').hasClass('light-mode')) {
-                    $('#themeText').text('dark mode');
-                } else {
-                    $('#themeText').text('light mode');
-                }
-            });
-        });
-    </script>
+    ];
+
+    const cardsRow = document.getElementById('cardsRow');
+    const detailPanel = document.getElementById('detailPanel');
+    const panelInner = document.getElementById('panelInner');
+    const panelClose = document.getElementById('panelClose');
+    const mainView = document.getElementById('mainView');
+
+    let activeCard = null;
+
+    experiences.forEach((exp, i) => {
+        const card = document.createElement('div');
+        card.className = 'card';
+        card.dataset.index = i;
+        card.innerHTML = `
+            <div class="card-img" style="background:${exp.color}">
+                <span class="card-letter">${exp.company[0]}</span>
+            </div>
+            <p class="card-company">${exp.company}</p>
+            <p class="card-role">${exp.role}</p>
+        `;
+        card.addEventListener('click', () => openPanel(exp, card));
+        cardsRow.appendChild(card);
+    });
+
+    function openPanel(exp, card) {
+        if (activeCard) activeCard.classList.remove('active');
+        activeCard = card;
+        card.classList.add('active');
+
+        panelInner.innerHTML = `
+            <div class="panel-img" style="background:${exp.color}">
+                <span class="panel-letter">${exp.company[0]}</span>
+            </div>
+            <p class="panel-company">${exp.company}</p>
+            <p class="panel-role">${exp.role}</p>
+            <p class="panel-period">${exp.period}</p>
+            <p class="panel-desc">${exp.description}</p>
+            <div class="panel-skills">
+                ${exp.skills.map(s => `<span class="skill">${s}</span>`).join('')}
+            </div>
+        `;
+
+        detailPanel.classList.add('open');
+        mainView.classList.add('shifted');
+    }
+
+    panelClose.addEventListener('click', () => {
+        detailPanel.classList.remove('open');
+        mainView.classList.remove('shifted');
+        if (activeCard) activeCard.classList.remove('active');
+        activeCard = null;
+    });
+</script>
+
 </body>
 </html>

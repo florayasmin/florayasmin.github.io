@@ -512,6 +512,29 @@ body {
     background: rgba(255,255,255,0.22);
 }
 
+.gallery-dots {
+    display: flex;
+    justify-content: center;
+    gap: 7px;
+    margin-top: 14px;
+}
+
+.gallery-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    border: 1.5px solid rgba(255,255,255,0.6);
+    background: transparent;
+    cursor: pointer;
+    transition: background 0.2s, border-color 0.2s;
+    flex-shrink: 0;
+}
+
+.gallery-dot.active {
+    background: #fff;
+    border-color: #fff;
+}
+
 .about-modal-body {
     padding: 20px 4px 8px;
     width: 100%;

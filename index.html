@@ -84,6 +84,7 @@
                 </div>
                 <button class="gallery-nav gallery-next" id="galleryNext">&#8250;</button>
             </div>
+            <div class="gallery-dots" id="galleryDots"></div>
             <div class="about-modal-body">
                 <p class="about-modal-stat">based in seattle, wa</p>
                 <p class="about-modal-bio">i love creating things that blend design and impact, exploring new cultures &amp; languages, teaching, and competing in hackathons. focused on <strong>ai/ml</strong> and <strong>software engineering</strong>, typically building with java, python, react, and html/css/js. also heavily intruiged by biological sciences, interested in engaging in neuro research!</p>
@@ -214,7 +215,7 @@
     });
 
     // about modal gallery
-    const aboutPhotos = ['about.jpg']; // add more photo filenames here to expand gallery
+    const aboutPhotos = ['about.jpg', 'physics.jpg', 'winfo.jpeg', 'ammu.jpg', 'grad.jpg', 'banquet.jpeg', 'robotics.jpg', 'antigua.jpg', 'cisco.jpg']; // add more photo filenames here to expand gallery
     let currentPhoto = 0;
 
     const aboutCard = document.getElementById('aboutCard');
@@ -224,11 +225,21 @@
     const galleryImg = document.getElementById('galleryImg');
     const galleryPrev = document.getElementById('galleryPrev');
     const galleryNext = document.getElementById('galleryNext');
+    const galleryDots = document.getElementById('galleryDots');
+
+    // build dots
+    aboutPhotos.forEach((_, i) => {
+        const dot = document.createElement('span');
+        dot.className = 'gallery-dot';
+        dot.addEventListener('click', () => { currentPhoto = i; updateGalleryImg(); });
+        galleryDots.appendChild(dot);
+    });
 
     function updateGalleryImg() {
         galleryImg.src = aboutPhotos[currentPhoto];
-        galleryPrev.style.visibility = currentPhoto === 0 ? 'hidden' : 'visible';
-        galleryNext.style.visibility = currentPhoto === aboutPhotos.length - 1 ? 'hidden' : 'visible';
+        document.querySelectorAll('.gallery-dot').forEach((d, i) => {
+            d.classList.toggle('active', i === currentPhoto);
+        });
     }
 
     function openAboutModal() {
@@ -246,17 +257,31 @@
     aboutModalBackdrop.addEventListener('click', closeAboutModal);
     galleryPrev.addEventListener('click', (e) => {
         e.stopPropagation();
-        if (currentPhoto > 0) { currentPhoto--; updateGalleryImg(); }
+        currentPhoto = (currentPhoto - 1 + aboutPhotos.length) % aboutPhotos.length;
+        updateGalleryImg();
     });
     galleryNext.addEventListener('click', (e) => {
         e.stopPropagation();
-        if (currentPhoto < aboutPhotos.length - 1) { currentPhoto++; updateGalleryImg(); }
+        currentPhoto = (currentPhoto + 1) % aboutPhotos.length;
+        updateGalleryImg();
     });
     document.addEventListener('keydown', (e) => {
         if (!aboutModal.classList.contains('open')) return;
         if (e.key === 'Escape') closeAboutModal();
-        if (e.key === 'ArrowLeft' && currentPhoto > 0) { currentPhoto--; updateGalleryImg(); }
-        if (e.key === 'ArrowRight' && currentPhoto < aboutPhotos.length - 1) { currentPhoto++; updateGalleryImg(); }
+        if (e.key === 'ArrowLeft') { currentPhoto = (currentPhoto - 1 + aboutPhotos.length) % aboutPhotos.length; updateGalleryImg(); }
+        if (e.key === 'ArrowRight') { currentPhoto = (currentPhoto + 1) % aboutPhotos.length; updateGalleryImg(); }
+    });
+
+    // swipe support
+    let touchStartX = 0;
+    const galleryWrap = document.querySelector('.gallery-img-wrap');
+    galleryWrap.addEventListener('touchstart', (e) => { touchStartX = e.touches[0].clientX; }, { passive: true });
+    galleryWrap.addEventListener('touchend', (e) => {
+        const dx = e.changedTouches[0].clientX - touchStartX;
+        if (Math.abs(dx) < 30) return;
+        if (dx < 0) { currentPhoto = (currentPhoto + 1) % aboutPhotos.length; }
+        else { currentPhoto = (currentPhoto - 1 + aboutPhotos.length) % aboutPhotos.length; }
+        updateGalleryImg();
     });
 </script>
 

@@ -81,10 +81,10 @@
                 <button class="gallery-nav gallery-prev" id="galleryPrev">&#8249;</button>
                 <div class="gallery-img-wrap">
                     <img id="galleryImg" src="" alt="flora">
+                    <div class="gallery-dots" id="galleryDots"></div>
                 </div>
                 <button class="gallery-nav gallery-next" id="galleryNext">&#8250;</button>
             </div>
-            <div class="gallery-dots" id="galleryDots"></div>
             <div class="about-modal-body">
                 <p class="about-modal-stat">based in seattle, wa</p>
                 <p class="about-modal-bio">i love creating things that blend design and impact, exploring new cultures &amp; languages, teaching, and competing in hackathons. focused on <strong>ai/ml</strong> and <strong>software engineering</strong>, typically building with java, python, react, and html/css/js. also heavily intruiged by biological sciences, interested in engaging in neuro research!</p>
@@ -215,7 +215,7 @@
     });
 
     // about modal gallery
-    const aboutPhotos = ['about.jpg', 'physics.jpg', 'winfo.jpeg', 'ammu.jpg', 'grad.jpg', 'banquet.jpeg', 'robotics.jpg', 'antigua.jpg', 'cisco.jpg']; // add more photo filenames here to expand gallery
+    const aboutPhotos = ['about.jpg', 'physics.jpg', 'winfo.jpg', 'ammu.jpg', 'grad.jpg', 'banquet.jpeg', 'robotics.jpg', 'antigua.jpg', 'cisco.jpg']; // add more photo filenames here to expand gallery
     let currentPhoto = 0;
 
     const aboutCard = document.getElementById('aboutCard');

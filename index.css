@@ -569,9 +569,6 @@ body {
     gap: 10px;
 }
 
-.tour-grid.tour-expanded {
-    grid-template-columns: 1fr;
-}
 
 .tour-item {
     background: #181818;
@@ -617,12 +614,13 @@ body {
     font-size: 16px;
     font-weight: 700;
     color: #fff;
-    margin-bottom: 4px;
+    margin: 0 0 4px;
 }
 
 .tour-detail {
     font-size: 13px;
     color: #b3b3b3;
+    margin: 0;
 }
 
 @media (max-width: 700px) {

@@ -334,14 +334,14 @@
     // on tour toggle
     const tourShowAll = document.getElementById('tourShowAll');
     const tourGrid = document.getElementById('tourGrid');
+    const tourExtras = document.querySelectorAll('.tour-extra');
     let tourExpanded = false;
-    document.querySelector('.tour-extra').style.display = 'none';
+    tourExtras.forEach(el => el.style.display = 'none');
 
     tourShowAll.addEventListener('click', () => {
         tourExpanded = !tourExpanded;
-        tourGrid.classList.toggle('tour-expanded', tourExpanded);
-        document.querySelector('.tour-extra').style.display = tourExpanded ? 'flex' : 'none';
-        tourShowAll.textContent = tourExpanded ? 'Show less' : 'Show all (10)';
+        tourExtras.forEach(el => el.style.display = tourExpanded ? 'flex' : 'none');
+        tourShowAll.textContent = tourExpanded ? 'Show less' : `Show all (${tourGrid.children.length})`;
     });
 
     // swipe support

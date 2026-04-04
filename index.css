@@ -12,7 +12,7 @@ body {
     overflow: hidden;
 }
 
-/* ── Layout ── */
+/* ── layout ── */
 .app {
     display: flex;
     height: 100vh;
@@ -31,7 +31,7 @@ body {
 .main-view::-webkit-scrollbar-thumb { background: #535353; border-radius: 4px; }
 .main-view::-webkit-scrollbar-thumb:hover { background: #727272; }
 
-/* ── Profile Banner ── */
+/* ── profile banner ── */
 .profile-banner {
     background: linear-gradient(transparent 0%, rgba(0,0,0,0.5) 100%), #6d2b47;
     padding: 80px 32px 28px;
@@ -90,13 +90,13 @@ body {
     color: rgba(255,255,255,0.5);
 }
 
-/* ── Content ── */
+/* ── content ── */
 .content {
     padding: 32px;
     background: linear-gradient(rgba(109,43,71,0.25) 0%, #121212 180px);
 }
 
-/* ── Section ── */
+/* ── section ── */
 .section {
     margin-bottom: 52px;
 }
@@ -128,7 +128,7 @@ body {
 
 .show-all-btn:hover { color: #fff; }
 
-/* ── Cards ── */
+/* ── cards ── */
 .cards-row {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -184,7 +184,7 @@ body {
     text-overflow: ellipsis;
 }
 
-/* ── Right Panel ── */
+/* ── right panel ── */
 .detail-panel {
     width: 0;
     overflow: hidden;
@@ -293,7 +293,7 @@ body {
     letter-spacing: 0.04em;
 }
 
-/* ── About Section ── */
+/* ── about section ── */
 .about-heading {
     font-size: 24px;
     font-weight: 700;
@@ -399,7 +399,7 @@ body {
     font-weight: 600;
 }
 
-/* ── About Modal ── */
+/* ── about modal ── */
 .about-modal {
     display: none;
     position: fixed;
@@ -529,7 +529,7 @@ body {
     font-weight: 600;
 }
 
-/* ── Footer ── */
+/* ── footer ── */
 .footer {
     text-align: center;
     padding: 48px 0 72px;
@@ -567,7 +567,7 @@ body {
     color: #535353;
 }
 
-/* ── Responsive ── */
+/* ── responsive ── */
 @media (max-width: 700px) {
     .profile-banner { padding: 48px 20px 24px; }
     .profile-header { flex-direction: column; align-items: flex-start; gap: 16px; }

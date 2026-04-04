@@ -25,7 +25,7 @@
                     <div class="profile-meta">
                         <span>B.S. Computer Science</span>
                         <span class="dot">•</span>
-                        <span>Minor in Neural Computation &amp; Engineering</span>
+                        <span>Minor: Neural Computation &amp; Engineering</span>
                         <span class="dot">•</span>
                         <span>University of Washington</span>
                     </div>
@@ -43,6 +43,20 @@
                     <button class="show-all-btn">Show all</button>
                 </div>
                 <div class="cards-row" id="cardsRow"></div>
+            </section>
+
+            <!-- About Section -->
+            <section class="section">
+                <h2 class="about-heading">About</h2>
+                <div class="about-card">
+                    <img src="about.jpg" alt="flora" class="about-img" onerror="this.style.display='none'">
+                    <div class="about-placeholder-img"></div>
+                    <div class="about-badge">class of<br><strong>2028</strong></div>
+                    <div class="about-body">
+                        <p class="about-stat">based in seattle, wa</p>
+                        <p class="about-bio">i love creating things that blend design and impact, exploring new cultures &amp; languages, teaching, and competing in hackathons. focused on <strong>ai/ml</strong> and <strong>software engineering</strong>, typically building with java, python, react, and html/css/js. also heavily intruiged by biological sciences, interested in engaging in neuro research!</p>
+                    </div>
+                </div>
             </section>
 
             <!-- Footer -->
@@ -70,45 +84,59 @@
 <script>
     const experiences = [
         {
-            company: "Company A",
-            role: "Software Engineering Intern",
-            period: "Jun 2024 – Sep 2024",
+            company: "Visa",
+            role: "Software Engineer Intern",
+            period: "Jun 2026 – Aug 2026",
             color: "#4a7c59",
-            description: "Replace this with what you worked on, what you built, and the impact it had.",
-            skills: ["Python", "React", "AWS"]
+            image: "visa.jpg",
+            description: "Incoming Summer 2026",
+            skills: ["java", "tbd 👀"]
         },
         {
-            company: "Company B",
-            role: "Research Assistant",
-            period: "Jan 2024 – Jun 2024",
+            company: "Bideshi",
+            role: "Software Engineer Intern",
+            period: "Jan 2026 – Jun 2026",
             color: "#3d5a80",
-            description: "Replace this with what you researched and any publications or outcomes.",
-            skills: ["Python", "PyTorch", "ML"]
+            image: "bideshi.jpg",
+            description: "Web development and UX focus, revamping bideshi.co and creating a language learning platform for Bengali speakers.",
+            skills: ["typescript", "UX research", "figma", "remote communication"]
         },
         {
-            company: "Company C",
+            company: "UW Robinson Center for Young Scholars",
             role: "Teaching Assistant",
-            period: "Sep 2023 – Dec 2023",
+            period: "Jul 2024 – Jul 2025",
             color: "#7b4f9e",
-            description: "Replace this with the course you TAed and what you did.",
-            skills: ["Java", "Teaching", "Mentorship"]
+            image: "uw.jpg",
+            description: "Taught super cool classes for two years: Physics of Roller Coasters and Introduction to Robotics.",
+            skills: ["teaching", "robotics", "physics", "getting over fear of roller coasters", "collaboration"]
         },
         {
-            company: "Company D",
-            role: "Product Design Intern",
-            period: "Jun 2023 – Aug 2023",
+            company: "Alongside.care",
+            role: "Student Advisor",
+            period: "Jan 2024 – Jun 2025",
             color: "#b5451b",
-            description: "Replace this with your product work and design decisions.",
-            skills: ["Figma", "User Research", "Agile"]
+            image: "alongside.jpg",
+            description: "Regularly tested new app features and provided UX insights to help design and improve an AI-powered mental health platform for young adults and schools.",
+            skills: ["usability testing"]
         },
         {
-            company: "Company E",
-            role: "Software Developer",
-            period: "Jan 2023 – May 2023",
+            company: "LePal.ai",
+            role: "UI/UX Design Intern",
+            period: "Aug 2024 – Sept 2024",
             color: "#5c4033",
-            description: "Replace this with what you shipped and who used it.",
-            skills: ["JavaScript", "Node.js", "SQL"]
-        }
+            image: "lepal.jpg",
+            description: "Conducted user interviews and usability testing to improve app design.",
+            skills: ["UX research", "figma"]
+        },
+        {
+            company: "MAPS",
+            role: "Sunday School Teacher",
+            period: "Sept 2023 – Present",
+            color: "#5c4033",
+            image: "maps.jpg",
+            description: "The highlight of my week: teaching first/third graders about how to be better versions of themselves and value their privileges and world around them.",
+            skills: ["teaching", "communication", "punctuality"]
+        },
     ];
 
     const cardsRow = document.getElementById('cardsRow');
@@ -125,7 +153,9 @@
         card.dataset.index = i;
         card.innerHTML = `
             <div class="card-img" style="background:${exp.color}">
-                <span class="card-letter">${exp.company[0]}</span>
+                ${exp.image
+                    ? `<img src="${exp.image}" alt="${exp.company}" style="width:100%;height:100%;object-fit:cover;border-radius:8px;">`
+                    : `<span class="card-letter">${exp.company[0]}</span>`}
             </div>
             <p class="card-company">${exp.company}</p>
             <p class="card-role">${exp.role}</p>
@@ -141,7 +171,9 @@
 
         panelInner.innerHTML = `
             <div class="panel-img" style="background:${exp.color}">
-                <span class="panel-letter">${exp.company[0]}</span>
+                ${exp.image
+                    ? `<img src="${exp.image}" alt="${exp.company}" style="width:100%;height:100%;object-fit:cover;">`
+                    : `<span class="panel-letter">${exp.company[0]}</span>`}
             </div>
             <p class="panel-company">${exp.company}</p>
             <p class="panel-role">${exp.role}</p>

@@ -59,6 +59,64 @@
                 </div>
             </section>
 
+            <!-- on tour -->
+            <section class="section">
+                <div class="section-header">
+                    <h2>On Tour</h2>
+                    <button class="show-all-btn" id="tourShowAll">Show all (10)</button>
+                </div>
+                <div class="tour-grid" id="tourGrid">
+                    <div class="tour-item">
+                        <div class="tour-date"><span class="tour-month">Apr</span><div class="tour-year">2026</div></div>
+                        <div><p class="tour-city">Los Angeles</p><p class="tour-detail">LA Hacks</p></div>
+                    </div>
+                    <div class="tour-item">
+                        <div class="tour-date"><span class="tour-month">Dec</span><div class="tour-year">2025</div></div>
+                        <div><p class="tour-city">Istanbul</p><p class="tour-detail">Turkey</p></div>
+                    </div>
+                    <div class="tour-item">
+                        <div class="tour-date"><span class="tour-month">Dec</span><div class="tour-year">2025</div></div>
+                        <div><p class="tour-city">Mecca &amp; Medina</p><p class="tour-detail">Saudi Arabia</p></div>
+                    </div>
+                    <div class="tour-item tour-extra">
+                        <div class="tour-date"><span class="tour-month">Apr</span><div class="tour-year">2025</div></div>
+                        <div><p class="tour-city">Atlanta</p><p class="tour-detail">Georgia</p></div>
+                    </div>
+                    <div class="tour-item tour-extra">
+                        <div class="tour-date"><span class="tour-month">Apr</span><div class="tour-year">2025</div></div>
+                        <div><p class="tour-city">Boston</p><p class="tour-detail">Massachusetts</p></div>
+                    </div>
+                    <div class="tour-item tour-extra">
+                        <div class="tour-date"><span class="tour-month">Apr</span><div class="tour-year">2025</div></div>
+                        <div><p class="tour-city">Pittsburgh</p><p class="tour-detail">Pennsylvania</p></div>
+                    </div>
+                    <div class="tour-item">
+                        <div class="tour-date"><span class="tour-month">Feb</span><div class="tour-year">2025</div></div>
+                        <div><p class="tour-city">Dhaka</p><p class="tour-detail">The Motherland</p></div>
+                    </div>
+                    <div class="tour-item">
+                        <div class="tour-date"><span class="tour-month">Feb</span><div class="tour-year">2025</div></div>
+                        <div><p class="tour-city">Dubai</p><p class="tour-detail">United Arab Emirates</p></div>
+                    </div>
+                    <div class="tour-item">
+                        <div class="tour-date"><span class="tour-month">Feb</span><div class="tour-year">2024</div></div>
+                        <div><p class="tour-city">St. John's</p><p class="tour-detail">Cisco Antigua Project</p></div>
+                    </div>
+                    <div class="tour-item">
+                        <div class="tour-date"><span class="tour-month">Apr</span><div class="tour-year">2023</div></div>
+                        <div><p class="tour-city">Houston</p><p class="tour-detail">FIRST Robotics Championship</p></div>
+                    </div>
+                    <div class="tour-item">
+                        <div class="tour-date"><span class="tour-month">Feb</span><div class="tour-year">2023</div></div>
+                        <div><p class="tour-city">St. John's</p><p class="tour-detail">Cisco Antigua Project</p></div>
+                    </div>
+                    <div class="tour-item">
+                        <div class="tour-date"><span class="tour-month">Jun</span><div class="tour-year">2022</div></div>
+                        <div><p class="tour-city">Orlando &amp; Miami</p><p class="tour-detail">Florida</p></div>
+                    </div>
+                </div>
+            </section>
+
             <!-- footer -->
             <div class="footer">
                 <p class="footer-label">let's connect</p>
@@ -271,6 +329,19 @@
         if (e.key === 'Escape') closeAboutModal();
         if (e.key === 'ArrowLeft') { currentPhoto = (currentPhoto - 1 + aboutPhotos.length) % aboutPhotos.length; updateGalleryImg(); }
         if (e.key === 'ArrowRight') { currentPhoto = (currentPhoto + 1) % aboutPhotos.length; updateGalleryImg(); }
+    });
+
+    // on tour toggle
+    const tourShowAll = document.getElementById('tourShowAll');
+    const tourGrid = document.getElementById('tourGrid');
+    let tourExpanded = false;
+    document.querySelector('.tour-extra').style.display = 'none';
+
+    tourShowAll.addEventListener('click', () => {
+        tourExpanded = !tourExpanded;
+        tourGrid.classList.toggle('tour-expanded', tourExpanded);
+        document.querySelector('.tour-extra').style.display = tourExpanded ? 'flex' : 'none';
+        tourShowAll.textContent = tourExpanded ? 'Show less' : 'Show all (10)';
     });
 
     // swipe support

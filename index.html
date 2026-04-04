@@ -10,10 +10,10 @@
 
 <div class="app">
 
-    <!-- Main scrollable view -->
+    <!-- main scrollable view -->
     <div class="main-view" id="mainView">
 
-        <!-- Profile Banner -->
+        <!-- profile Banner -->
         <div class="profile-banner">
             <div class="profile-header">
                 <div class="profile-avatar">
@@ -33,10 +33,10 @@
             </div>
         </div>
 
-        <!-- Main Content -->
+        <!-- main -->
         <div class="content">
 
-            <!-- Work Experience Section -->
+            <!-- work experience -->
             <section class="section">
                 <div class="section-header">
                     <h2>Work Experience</h2>
@@ -45,21 +45,21 @@
                 <div class="cards-row" id="cardsRow"></div>
             </section>
 
-            <!-- About Section -->
+            <!-- about -->
             <section class="section">
                 <h2 class="about-heading">About</h2>
-                <div class="about-card">
-                    <img src="about.jpg" alt="flora" class="about-img" onerror="this.style.display='none'">
+                <div class="about-card" id="aboutCard">
                     <div class="about-placeholder-img"></div>
+                    <img src="about.jpg" alt="flora" class="about-img" onerror="this.style.display='none'">
                     <div class="about-badge">class of<br><strong>2028</strong></div>
-                    <div class="about-body">
+                    <div class="about-overlay">
                         <p class="about-stat">based in seattle, wa</p>
                         <p class="about-bio">i love creating things that blend design and impact, exploring new cultures &amp; languages, teaching, and competing in hackathons. focused on <strong>ai/ml</strong> and <strong>software engineering</strong>, typically building with java, python, react, and html/css/js. also heavily intruiged by biological sciences, interested in engaging in neuro research!</p>
                     </div>
                 </div>
             </section>
 
-            <!-- Footer -->
+            <!-- footer -->
             <div class="footer">
                 <p class="footer-label">let's connect</p>
                 <div class="footer-links">
@@ -73,7 +73,26 @@
         </div>
     </div>
 
-    <!-- Right Detail Panel -->
+    <!-- about modal -->
+    <div class="about-modal" id="aboutModal">
+        <div class="about-modal-backdrop" id="aboutModalBackdrop"></div>
+        <div class="about-modal-content">
+            <button class="about-modal-close" id="aboutModalClose">✕</button>
+            <div class="about-gallery">
+                <button class="gallery-nav gallery-prev" id="galleryPrev">&#8249;</button>
+                <div class="gallery-img-wrap">
+                    <img id="galleryImg" src="" alt="flora">
+                </div>
+                <button class="gallery-nav gallery-next" id="galleryNext">&#8250;</button>
+            </div>
+            <div class="about-modal-body">
+                <p class="about-modal-stat">based in seattle, wa</p>
+                <p class="about-modal-bio">i love creating things that blend design and impact, exploring new cultures &amp; languages, teaching, and competing in hackathons. focused on <strong>ai/ml</strong> and <strong>software engineering</strong>, typically building with java, python, react, and html/css/js. also heavily intruiged by biological sciences, interested in engaging in neuro research!</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- right detail panel -->
     <div class="detail-panel" id="detailPanel">
         <button class="panel-close" id="panelClose" aria-label="Close">✕</button>
         <div class="panel-inner" id="panelInner"></div>
@@ -96,7 +115,7 @@
             company: "Bideshi",
             role: "Software Engineer Intern",
             period: "Jan 2026 – Jun 2026",
-            color: "#3d5a80",
+            color: "#ffbb00",
             image: "bideshi.jpg",
             description: "Web development and UX focus, revamping bideshi.co and creating a language learning platform for Bengali speakers.",
             skills: ["typescript", "UX research", "figma", "remote communication"]
@@ -114,7 +133,7 @@
             company: "Alongside.care",
             role: "Student Advisor",
             period: "Jan 2024 – Jun 2025",
-            color: "#b5451b",
+            color: "#479ef5",
             image: "alongside.jpg",
             description: "Regularly tested new app features and provided UX insights to help design and improve an AI-powered mental health platform for young adults and schools.",
             skills: ["usability testing"]
@@ -193,6 +212,52 @@
         mainView.classList.remove('shifted');
         if (activeCard) activeCard.classList.remove('active');
         activeCard = null;
+    });
+
+    // About modal gallery
+    const aboutPhotos = ['about.jpg']; // add more photo filenames here to expand the gallery
+    let currentPhoto = 0;
+
+    const aboutCard = document.getElementById('aboutCard');
+    const aboutModal = document.getElementById('aboutModal');
+    const aboutModalClose = document.getElementById('aboutModalClose');
+    const aboutModalBackdrop = document.getElementById('aboutModalBackdrop');
+    const galleryImg = document.getElementById('galleryImg');
+    const galleryPrev = document.getElementById('galleryPrev');
+    const galleryNext = document.getElementById('galleryNext');
+
+    function updateGalleryImg() {
+        galleryImg.src = aboutPhotos[currentPhoto];
+        galleryPrev.style.visibility = currentPhoto === 0 ? 'hidden' : 'visible';
+        galleryNext.style.visibility = currentPhoto === aboutPhotos.length - 1 ? 'hidden' : 'visible';
+    }
+
+    function openAboutModal() {
+        currentPhoto = 0;
+        updateGalleryImg();
+        aboutModal.classList.add('open');
+    }
+
+    function closeAboutModal() {
+        aboutModal.classList.remove('open');
+    }
+
+    aboutCard.addEventListener('click', openAboutModal);
+    aboutModalClose.addEventListener('click', closeAboutModal);
+    aboutModalBackdrop.addEventListener('click', closeAboutModal);
+    galleryPrev.addEventListener('click', (e) => {
+        e.stopPropagation();
+        if (currentPhoto > 0) { currentPhoto--; updateGalleryImg(); }
+    });
+    galleryNext.addEventListener('click', (e) => {
+        e.stopPropagation();
+        if (currentPhoto < aboutPhotos.length - 1) { currentPhoto++; updateGalleryImg(); }
+    });
+    document.addEventListener('keydown', (e) => {
+        if (!aboutModal.classList.contains('open')) return;
+        if (e.key === 'Escape') closeAboutModal();
+        if (e.key === 'ArrowLeft' && currentPhoto > 0) { currentPhoto--; updateGalleryImg(); }
+        if (e.key === 'ArrowRight' && currentPhoto < aboutPhotos.length - 1) { currentPhoto++; updateGalleryImg(); }
     });
 </script>
 

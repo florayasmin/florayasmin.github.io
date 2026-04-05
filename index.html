@@ -353,12 +353,13 @@
         function type() {
             if (i < text.length) {
                 el.textContent += text[i++];
-                setTimeout(type, i === 1 ? 120 : 80);
+                setTimeout(type, 80);
             } else {
-                setTimeout(() => cursor.classList.add('hidden'), 1200);
+                // blink twice (2 × 0.6s = 1.2s), then fade out
+                setTimeout(() => cursor.classList.add('fade-out'), 1200);
             }
         }
-        setTimeout(type, 100);
+        setTimeout(type, 250);
     })();
 
     // swipe support

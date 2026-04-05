@@ -85,7 +85,7 @@ body {
 }
 
 .type-cursor.fade-out {
-    animation: cursor-fade 0.5s ease-out forwards;
+    animation: cursor-fade 0.5s ease-out forwards !important;
 }
 
 @keyframes blink {

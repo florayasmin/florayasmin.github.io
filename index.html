@@ -355,8 +355,8 @@
                 el.textContent += text[i++];
                 setTimeout(type, 80);
             } else {
-                // blink twice (2 × 0.6s = 1.2s), then fade out
-                setTimeout(() => cursor.classList.add('fade-out'), 1200);
+                // blink ~5-6 times (6 × 0.6s = 3.6s), then fade out
+                setTimeout(() => cursor.classList.add('fade-out'), 3600);
             }
         }
         setTimeout(type, 250);

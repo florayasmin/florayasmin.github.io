@@ -76,6 +76,22 @@ body {
     margin-bottom: 20px;
 }
 
+.type-cursor {
+    display: inline-block;
+    animation: blink 0.7s step-end infinite;
+    font-weight: 300;
+    opacity: 1;
+}
+
+.type-cursor.hidden {
+    display: none;
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}
+
 .profile-meta {
     display: flex;
     align-items: center;

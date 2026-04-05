@@ -22,7 +22,7 @@
                 </div>
                 <div class="profile-details">
                     <span class="profile-label">Profile</span>
-                    <h1 class="profile-name">flora</h1>
+                    <h1 class="profile-name"><span id="typewriter"></span><span class="type-cursor">|</span></h1>
                     <div class="profile-meta">
                         <span>B.S. Computer Science</span>
                         <span class="dot">•</span>
@@ -74,7 +74,7 @@
                         <div class="tour-date"><span class="tour-month">Dec</span><div class="tour-year">2025</div></div>
                         <div><p class="tour-city">Istanbul</p><p class="tour-detail">Turkey</p></div>
                     </div>
-                    <div class="tour-item">
+                    <div class="tour-item tour-extra">
                         <div class="tour-date"><span class="tour-month">Dec</span><div class="tour-year">2025</div></div>
                         <div><p class="tour-city">Mecca &amp; Medina</p><p class="tour-detail">Saudi Arabia</p></div>
                     </div>
@@ -106,7 +106,7 @@
                         <div class="tour-date"><span class="tour-month">Apr</span><div class="tour-year">2023</div></div>
                         <div><p class="tour-city">Houston</p><p class="tour-detail">FIRST Robotics Championship</p></div>
                     </div>
-                    <div class="tour-item tour-extra">
+                    <div class="tour-item">
                         <div class="tour-date"><span class="tour-month">Feb</span><div class="tour-year">2023</div></div>
                         <div><p class="tour-city">St. John's</p><p class="tour-detail">Cisco Antigua Project</p></div>
                     </div>
@@ -343,6 +343,23 @@
         tourExtras.forEach(el => el.style.display = tourExpanded ? 'flex' : 'none');
         tourShowAll.textContent = tourExpanded ? 'Show less' : `Show all (${tourGrid.children.length})`;
     });
+
+    // typewriter effect
+    (function() {
+        const text = "hi! i'm flora";
+        const el = document.getElementById('typewriter');
+        const cursor = document.querySelector('.type-cursor');
+        let i = 0;
+        function type() {
+            if (i < text.length) {
+                el.textContent += text[i++];
+                setTimeout(type, i === 1 ? 120 : 80);
+            } else {
+                setTimeout(() => cursor.classList.add('hidden'), 1200);
+            }
+        }
+        setTimeout(type, 100);
+    })();
 
     // swipe support
     let touchStartX = 0;

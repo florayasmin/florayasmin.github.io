@@ -85,17 +85,14 @@ body {
 }
 
 .type-cursor.fade-out {
-    animation: cursor-fade 0.5s ease-out forwards !important;
+    animation: none !important;
+    transition: opacity 0.4s ease-out;
+    opacity: 0 !important;
 }
 
 @keyframes blink {
     0%, 100% { opacity: 1; }
     50% { opacity: 0; }
-}
-
-@keyframes cursor-fade {
-    0% { opacity: 1; }
-    100% { opacity: 0; }
 }
 
 .profile-meta {

@@ -60,6 +60,7 @@
             </section>
 
             <!-- on tour -->
+            <!--
             <section class="section">
                 <div class="section-header">
                     <h2>On Tour</h2>
@@ -116,6 +117,7 @@
                     </div>
                 </div>
             </section>
+            -->
 
             <!-- footer -->
             <div class="footer">
@@ -331,6 +333,7 @@
         if (e.key === 'ArrowRight') { currentPhoto = (currentPhoto + 1) % aboutPhotos.length; updateGalleryImg(); }
     });
 
+    /*
     // on tour toggle
     const tourShowAll = document.getElementById('tourShowAll');
     const tourGrid = document.getElementById('tourGrid');
@@ -343,6 +346,7 @@
         tourExtras.forEach(el => el.style.display = tourExpanded ? 'flex' : 'none');
         tourShowAll.textContent = tourExpanded ? 'Show less' : `Show all (${tourGrid.children.length})`;
     });
+    */
 
     // typewriter effect
     (function() {

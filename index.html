@@ -18,7 +18,7 @@
                 <svg class="sidebar-library-icon" viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true">
                     <path d="M3 22a1 1 0 0 1-1-1V3a1 1 0 0 1 2 0v18a1 1 0 0 1-1 1zM15.5 2.134A1 1 0 0 0 14 3v18a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V6.464a1 1 0 0 0-.5-.866l-6-3.464zM9 2a1 1 0 0 0-1 1v18a1 1 0 1 0 2 0V3a1 1 0 0 0-1-1z"/>
                 </svg>
-                <span>Your Library</span>
+                <span>Flora's Library</span>
             </button>
             <div class="sidebar-header-actions">
                 <button class="sidebar-icon-btn" type="button" title="Create" aria-label="Create">
@@ -179,103 +179,84 @@
     /* ── library placeholders (informal / misc) ── */
     const libraryItems = [
         {
-            id: "hackathons",
-            title: "hackathons",
-            type: "Events",
-            filter: "events",
-            subtitle: "Event • flora",
+            id: "about-me",
+            title: "about me",
+            type: "Playlist",
+            filter: "projects",
+            subtitle: "Playlist • flora",
             shape: "square",
             color: "#6d2b47",
-            image: "winfo.jpg",
-            blurb: "Placeholder for hackathon wins, late-night builds, and competition stories."
-        },
-        {
-            id: "robotics",
-            title: "robotics",
-            type: "Club",
-            filter: "clubs",
-            subtitle: "Club • flora",
-            shape: "circle",
-            color: "#2b3a6d",
-            image: "robotics.jpg",
-            blurb: "Placeholder for FIRST Robotics and other robotics adventures."
-        },
-        {
-            id: "winfo",
-            title: "winfo",
-            type: "Club",
-            filter: "clubs",
-            subtitle: "Club • flora",
-            shape: "circle",
-            color: "#7b4f9e",
-            image: "winfo.jpg",
-            blurb: "Placeholder for Women in Informatics and community involvement."
+            blurb: "Placeholder for a deeper about-me page."
         },
         {
             id: "side-projects",
             title: "side projects",
-            type: "Project",
+            type: "Playlist",
             filter: "projects",
-            subtitle: "Project • flora",
+            subtitle: "Playlist • flora",
             shape: "square",
-            color: "#4a7c59",
-            image: null,
+            color: "#3d5a80",
             blurb: "Placeholder for personal builds, experiments, and weekend projects."
         },
         {
-            id: "travel",
-            title: "on tour",
-            type: "Events",
+            id: "adventures",
+            title: "adventures",
+            type: "Playlist",
             filter: "events",
-            subtitle: "Event • flora",
+            subtitle: "Playlist • flora",
             shape: "square",
-            color: "#5c4033",
-            image: "antigua.jpg",
-            blurb: "Placeholder for travel notes, conferences, and places I've been."
+            color: "#4a7c59",
+            blurb: "Placeholder for travel, trips, and adventures."
         },
         {
             id: "teaching",
-            title: "teaching",
-            type: "Project",
+            title: "teaching!",
+            type: "Playlist",
             filter: "projects",
-            subtitle: "Project • flora",
+            subtitle: "Playlist • flora",
             shape: "square",
-            color: "#3d5a80",
-            image: "maps.jpg",
-            blurb: "Placeholder for informal teaching moments beyond formal roles."
+            color: "#b85c38",
+            blurb: "Placeholder for teaching moments and classrooms."
         },
         {
-            id: "languages",
-            title: "languages",
-            type: "Project",
-            filter: "projects",
-            subtitle: "Project • flora",
-            shape: "circle",
-            color: "#1a5c4a",
-            image: "bideshi.jpg",
-            blurb: "Placeholder for language learning, Bengali, and cultural projects."
-        },
-        {
-            id: "photography",
-            title: "photography",
-            type: "Project",
-            filter: "projects",
-            subtitle: "Project • flora",
-            shape: "square",
-            color: "#4a3728",
-            image: "banquet.jpeg",
-            blurb: "Placeholder for photo dumps and visual journals."
-        },
-        {
-            id: "research",
-            title: "research rabbit holes",
-            type: "Project",
-            filter: "projects",
-            subtitle: "Project • flora",
+            id: "university",
+            title: "university",
+            type: "Playlist",
+            filter: "clubs",
+            subtitle: "Playlist • flora",
             shape: "square",
             color: "#2b3a6d",
-            image: "physics.jpg",
-            blurb: "Placeholder for neuroscience, physics, and curiosity-driven deep dives."
+            blurb: "Placeholder for university life at UW."
+        },
+        {
+            id: "interests",
+            title: "interests",
+            type: "Playlist",
+            filter: "projects",
+            subtitle: "Playlist • flora",
+            shape: "square",
+            color: "#7b4f9e",
+            blurb: "Placeholder for hobbies, rabbit holes, and things I love."
+        },
+        {
+            id: "gallery",
+            title: "gallery",
+            type: "Playlist",
+            filter: "projects",
+            subtitle: "Playlist • flora",
+            shape: "square",
+            color: "#1a5c4a",
+            blurb: "Placeholder for photos and visual journals."
+        },
+        {
+            id: "resume",
+            title: "resume",
+            type: "Playlist",
+            filter: "projects",
+            subtitle: "Playlist • flora",
+            shape: "square",
+            color: "#5c4033",
+            blurb: "Placeholder for resume and CV."
         }
     ];
 
@@ -405,10 +386,7 @@
     /* ── library sidebar ── */
     function artHtml(item, sizeClass) {
         const shapeClass = item.shape === 'circle' ? 'is-circle' : 'is-square';
-        if (item.image) {
-            return `<div class="lib-art ${shapeClass} ${sizeClass}" style="background:${item.color}"><img src="${item.image}" alt=""></div>`;
-        }
-        return `<div class="lib-art ${shapeClass} ${sizeClass}" style="background:${item.color}"><span>${item.title[0]}</span></div>`;
+        return `<div class="lib-art ${shapeClass} ${sizeClass}" style="background:${item.color}" aria-hidden="true"></div>`;
     }
 
     function renderLibrary(filter) {

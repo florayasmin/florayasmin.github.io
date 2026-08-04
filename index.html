@@ -11,126 +11,132 @@
 
 <div class="app">
 
+    <!-- left library sidebar -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <button class="sidebar-title-btn" type="button" aria-label="Your Library">
+                <svg class="sidebar-library-icon" viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true">
+                    <path d="M3 22a1 1 0 0 1-1-1V3a1 1 0 0 1 2 0v18a1 1 0 0 1-1 1zM15.5 2.134A1 1 0 0 0 14 3v18a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V6.464a1 1 0 0 0-.5-.866l-6-3.464zM9 2a1 1 0 0 0-1 1v18a1 1 0 1 0 2 0V3a1 1 0 0 0-1-1z"/>
+                </svg>
+                <span>Your Library</span>
+            </button>
+            <div class="sidebar-header-actions">
+                <button class="sidebar-icon-btn" type="button" title="Create" aria-label="Create">
+                    <svg viewBox="0 0 16 16" width="16" height="16" fill="currentColor"><path d="M15.25 8a.75.75 0 0 1-.75.75H8.75v5.75a.75.75 0 0 1-1.5 0V8.75H1.5a.75.75 0 0 1 0-1.5h5.75V1.5a.75.75 0 0 1 1.5 0v5.75h5.75a.75.75 0 0 1 .75.75z"/></svg>
+                    <span>Create</span>
+                </button>
+            </div>
+        </div>
+
+        <div class="sidebar-filters" id="sidebarFilters">
+            <button class="filter-chip active" type="button" data-filter="all">All</button>
+            <button class="filter-chip" type="button" data-filter="projects">Projects</button>
+            <button class="filter-chip" type="button" data-filter="clubs">Clubs</button>
+            <button class="filter-chip" type="button" data-filter="events">Events</button>
+        </div>
+
+        <div class="sidebar-controls">
+            <button class="sidebar-search-btn" type="button" aria-label="Search" title="Search">
+                <svg viewBox="0 0 16 16" width="16" height="16" fill="currentColor"><path d="M7 1a6 6 0 1 0 3.67 10.67l3.83 3.83a1 1 0 0 0 1.41-1.41l-3.83-3.83A6 6 0 0 0 7 1zm-4 6a4 4 0 1 1 8 0 4 4 0 0 1-8 0z"/></svg>
+            </button>
+            <button class="sidebar-sort-btn" type="button">
+                <span>Recents</span>
+                <svg viewBox="0 0 16 16" width="14" height="14" fill="currentColor"><path d="M15 14.5H5V13h10v1.5zm0-5.75H5v-1.5h10v1.5zM15 3H5V1.5h10V3zM3 16l-2.5-3h5L3 16zm0-11.5L.5 1.5h5L3 4.5z"/></svg>
+            </button>
+        </div>
+
+        <nav class="sidebar-list" id="sidebarList" aria-label="Library"></nav>
+    </aside>
+
     <!-- main scrollable view -->
     <div class="main-view" id="mainView">
 
-        <!-- profile banner -->
-        <div class="profile-banner">
-            <div class="profile-header">
-                <div class="profile-avatar">
-                    <img src="flo.png" alt="flora" onerror="this.style.display='none'">
+        <!-- HOME: profile + experiences -->
+        <div class="view" id="homeView">
+
+            <!-- profile banner -->
+            <div class="profile-banner">
+                <div class="profile-header">
+                    <div class="profile-avatar">
+                        <img src="flo.png" alt="flora" onerror="this.style.display='none'">
+                    </div>
+                    <div class="profile-details">
+                        <span class="profile-label">Profile</span>
+                        <h1 class="profile-name"><span id="typewriter"></span><span class="type-cursor">|</span></h1>
+                        <div class="profile-meta">
+                            <span>B.S. Computer Science</span>
+                            <span class="dot">•</span>
+                            <span>Minor: Neural Computation &amp; Engineering</span>
+                            <span class="dot">•</span>
+                            <span>University of Washington</span>
+                        </div>
+                    </div>
                 </div>
-                <div class="profile-details">
-                    <span class="profile-label">Profile</span>
-                    <h1 class="profile-name"><span id="typewriter"></span><span class="type-cursor">|</span></h1>
-                    <div class="profile-meta">
-                        <span>B.S. Computer Science</span>
-                        <span class="dot">•</span>
-                        <span>Minor: Neural Computation &amp; Engineering</span>
-                        <span class="dot">•</span>
-                        <span>University of Washington</span>
+            </div>
+
+            <!-- main -->
+            <div class="content">
+
+                <!-- work experience -->
+                <section class="section">
+                    <div class="section-header">
+                        <h2>Work Experience</h2>
+                        <button class="show-all-btn">Show all</button>
+                    </div>
+                    <div class="cards-row" id="cardsRow"></div>
+                </section>
+
+                <!-- about -->
+                <section class="section">
+                    <h2 class="about-heading">About</h2>
+                    <div class="about-card" id="aboutCard">
+                        <div class="about-placeholder-img"></div>
+                        <img src="about.jpg" alt="flora" class="about-img" onerror="this.style.display='none'">
+                        <div class="about-overlay">
+                            <p class="about-stat">based in seattle, wa</p>
+                            <p class="about-bio">i love creating things that blend design and impact, exploring new cultures &amp; languages, teaching, and competing in hackathons. focused on <strong>ai/ml</strong> and <strong>software engineering</strong>, typically building with java, python, typescript, and html/css/js. also heavily intruiged by biological and physical sciences, interested in engaging in neuro research!</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- footer -->
+                <div class="footer">
+                    <p class="footer-label">let's connect</p>
+                    <div class="footer-links">
+                        <a href="mailto:fyasmin@uw.edu">email</a>
+                        <a href="https://linkedin.com/in/florayasmin" target="_blank" rel="noopener">linkedin</a>
+                        <a href="https://github.com/florayasmin" target="_blank" rel="noopener">github</a>
+                    </div>
+                    <p class="footer-credit">made with ♥ by flora</p>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- ITEM: placeholder detail page -->
+        <div class="view view-hidden" id="itemView">
+            <div class="item-page" id="itemPage">
+                <button class="back-btn" id="backBtn" type="button">
+                    <svg viewBox="0 0 16 16" width="16" height="16" fill="currentColor" aria-hidden="true"><path d="M11.03 3.47a.75.75 0 0 1 0 1.06L6.56 9l4.47 4.47a.75.75 0 1 1-1.06 1.06l-5-5a.75.75 0 0 1 0-1.06l5-5a.75.75 0 0 1 1.06 0z"/></svg>
+                    <span>Back</span>
+                </button>
+                <div class="item-banner" id="itemBanner">
+                    <div class="item-banner-art" id="itemBannerArt"></div>
+                    <div class="item-banner-details">
+                        <span class="item-type" id="itemType">Playlist</span>
+                        <h1 class="item-title" id="itemTitle"></h1>
+                        <p class="item-subtitle" id="itemSubtitle"></p>
+                    </div>
+                </div>
+                <div class="item-body">
+                    <div class="item-placeholder-card">
+                        <p class="item-placeholder-label">Coming soon</p>
+                        <p class="item-placeholder-text" id="itemPlaceholderText">This page is a placeholder for now. Content for this experience will live here.</p>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- main -->
-        <div class="content">
-
-            <!-- work experience -->
-            <section class="section">
-                <div class="section-header">
-                    <h2>Work Experience</h2>
-                    <button class="show-all-btn">Show all</button>
-                </div>
-                <div class="cards-row" id="cardsRow"></div>
-            </section>
-
-            <!-- about -->
-            <section class="section">
-                <h2 class="about-heading">About</h2>
-                <div class="about-card" id="aboutCard">
-                    <div class="about-placeholder-img"></div>
-                    <img src="about.jpg" alt="flora" class="about-img" onerror="this.style.display='none'">
-                    <div class="about-overlay">
-                        <p class="about-stat">based in seattle, wa</p>
-                        <p class="about-bio">i love creating things that blend design and impact, exploring new cultures &amp; languages, teaching, and competing in hackathons. focused on <strong>ai/ml</strong> and <strong>software engineering</strong>, typically building with java, python, typescript, and html/css/js. also heavily intruiged by biological and physical sciences, interested in engaging in neuro research!</p>
-                    </div>
-                </div>
-            </section>
-
-            <!-- on tour -->
-            <!--
-            <section class="section">
-                <div class="section-header">
-                    <h2>On Tour</h2>
-                    <button class="show-all-btn" id="tourShowAll">Show all (10)</button>
-                </div>
-                <div class="tour-grid" id="tourGrid">
-                    <div class="tour-item">
-                        <div class="tour-date"><span class="tour-month">Apr</span><div class="tour-year">2026</div></div>
-                        <div><p class="tour-city">Los Angeles</p><p class="tour-detail">LA Hacks</p></div>
-                    </div>
-                    <div class="tour-item">
-                        <div class="tour-date"><span class="tour-month">Dec</span><div class="tour-year">2025</div></div>
-                        <div><p class="tour-city">Istanbul</p><p class="tour-detail">Turkey</p></div>
-                    </div>
-                    <div class="tour-item tour-extra">
-                        <div class="tour-date"><span class="tour-month">Dec</span><div class="tour-year">2025</div></div>
-                        <div><p class="tour-city">Mecca &amp; Medina</p><p class="tour-detail">Saudi Arabia</p></div>
-                    </div>
-                    <div class="tour-item tour-extra">
-                        <div class="tour-date"><span class="tour-month">Apr</span><div class="tour-year">2025</div></div>
-                        <div><p class="tour-city">Atlanta</p><p class="tour-detail">Georgia</p></div>
-                    </div>
-                    <div class="tour-item tour-extra">
-                        <div class="tour-date"><span class="tour-month">Apr</span><div class="tour-year">2025</div></div>
-                        <div><p class="tour-city">Boston</p><p class="tour-detail">Massachusetts</p></div>
-                    </div>
-                    <div class="tour-item tour-extra">
-                        <div class="tour-date"><span class="tour-month">Apr</span><div class="tour-year">2025</div></div>
-                        <div><p class="tour-city">Pittsburgh</p><p class="tour-detail">Pennsylvania</p></div>
-                    </div>
-                    <div class="tour-item">
-                        <div class="tour-date"><span class="tour-month">Feb</span><div class="tour-year">2025</div></div>
-                        <div><p class="tour-city">Dhaka</p><p class="tour-detail">The Motherland</p></div>
-                    </div>
-                    <div class="tour-item tour-extra">
-                        <div class="tour-date"><span class="tour-month">Feb</span><div class="tour-year">2025</div></div>
-                        <div><p class="tour-city">Dubai</p><p class="tour-detail">United Arab Emirates</p></div>
-                    </div>
-                    <div class="tour-item">
-                        <div class="tour-date"><span class="tour-month">Feb</span><div class="tour-year">2024</div></div>
-                        <div><p class="tour-city">St. John's</p><p class="tour-detail">Cisco Antigua Project</p></div>
-                    </div>
-                    <div class="tour-item">
-                        <div class="tour-date"><span class="tour-month">Apr</span><div class="tour-year">2023</div></div>
-                        <div><p class="tour-city">Houston</p><p class="tour-detail">FIRST Robotics Championship</p></div>
-                    </div>
-                    <div class="tour-item">
-                        <div class="tour-date"><span class="tour-month">Feb</span><div class="tour-year">2023</div></div>
-                        <div><p class="tour-city">St. John's</p><p class="tour-detail">Cisco Antigua Project</p></div>
-                    </div>
-                    <div class="tour-item tour-extra">
-                        <div class="tour-date"><span class="tour-month">Jun</span><div class="tour-year">2022</div></div>
-                        <div><p class="tour-city">Orlando &amp; Miami</p><p class="tour-detail">Florida</p></div>
-                    </div>
-                </div>
-            </section>
-            -->
-
-            <!-- footer -->
-            <div class="footer">
-                <p class="footer-label">let's connect</p>
-                <div class="footer-links">
-                    <a href="mailto:fyasmin@uw.edu">email</a>
-                    <a href="https://linkedin.com/in/florayasmin" target="_blank" rel="noopener">linkedin</a>
-                    <a href="https://github.com/florayasmin" target="_blank" rel="noopener">github</a>
-                </div>
-                <p class="footer-credit">made with ♥ by flora</p>
-            </div>
-
-        </div>
     </div>
 
     <!-- about modal -->
@@ -161,7 +167,118 @@
 
 </div>
 
+<!-- mobile library toggle -->
+<button class="mobile-library-btn" id="mobileLibraryBtn" type="button" aria-label="Open library">
+    <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true">
+        <path d="M3 22a1 1 0 0 1-1-1V3a1 1 0 0 1 2 0v18a1 1 0 0 1-1 1zM15.5 2.134A1 1 0 0 0 14 3v18a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V6.464a1 1 0 0 0-.5-.866l-6-3.464zM9 2a1 1 0 0 0-1 1v18a1 1 0 1 0 2 0V3a1 1 0 0 0-1-1z"/>
+    </svg>
+</button>
+<div class="sidebar-backdrop" id="sidebarBackdrop"></div>
+
 <script>
+    /* ── library placeholders (informal / misc) ── */
+    const libraryItems = [
+        {
+            id: "hackathons",
+            title: "hackathons",
+            type: "Events",
+            filter: "events",
+            subtitle: "Event • flora",
+            shape: "square",
+            color: "#6d2b47",
+            image: "winfo.jpg",
+            blurb: "Placeholder for hackathon wins, late-night builds, and competition stories."
+        },
+        {
+            id: "robotics",
+            title: "robotics",
+            type: "Club",
+            filter: "clubs",
+            subtitle: "Club • flora",
+            shape: "circle",
+            color: "#2b3a6d",
+            image: "robotics.jpg",
+            blurb: "Placeholder for FIRST Robotics and other robotics adventures."
+        },
+        {
+            id: "winfo",
+            title: "winfo",
+            type: "Club",
+            filter: "clubs",
+            subtitle: "Club • flora",
+            shape: "circle",
+            color: "#7b4f9e",
+            image: "winfo.jpg",
+            blurb: "Placeholder for Women in Informatics and community involvement."
+        },
+        {
+            id: "side-projects",
+            title: "side projects",
+            type: "Project",
+            filter: "projects",
+            subtitle: "Project • flora",
+            shape: "square",
+            color: "#4a7c59",
+            image: null,
+            blurb: "Placeholder for personal builds, experiments, and weekend projects."
+        },
+        {
+            id: "travel",
+            title: "on tour",
+            type: "Events",
+            filter: "events",
+            subtitle: "Event • flora",
+            shape: "square",
+            color: "#5c4033",
+            image: "antigua.jpg",
+            blurb: "Placeholder for travel notes, conferences, and places I've been."
+        },
+        {
+            id: "teaching",
+            title: "teaching",
+            type: "Project",
+            filter: "projects",
+            subtitle: "Project • flora",
+            shape: "square",
+            color: "#3d5a80",
+            image: "maps.jpg",
+            blurb: "Placeholder for informal teaching moments beyond formal roles."
+        },
+        {
+            id: "languages",
+            title: "languages",
+            type: "Project",
+            filter: "projects",
+            subtitle: "Project • flora",
+            shape: "circle",
+            color: "#1a5c4a",
+            image: "bideshi.jpg",
+            blurb: "Placeholder for language learning, Bengali, and cultural projects."
+        },
+        {
+            id: "photography",
+            title: "photography",
+            type: "Project",
+            filter: "projects",
+            subtitle: "Project • flora",
+            shape: "square",
+            color: "#4a3728",
+            image: "banquet.jpeg",
+            blurb: "Placeholder for photo dumps and visual journals."
+        },
+        {
+            id: "research",
+            title: "research rabbit holes",
+            type: "Project",
+            filter: "projects",
+            subtitle: "Project • flora",
+            shape: "square",
+            color: "#2b3a6d",
+            image: "physics.jpg",
+            blurb: "Placeholder for neuroscience, physics, and curiosity-driven deep dives."
+        }
+    ];
+
     const experiences = [
         {
             company: "Visa",
@@ -184,7 +301,7 @@
         {
             company: "UW Robinson Center for Young Scholars",
             role: "Teaching Assistant",
-            period: "Jul 2024 – Jul 2025",
+            period: "Jul 2024 – Oct 2025",
             color: "#7b4f9e",
             image: "robinson.jpg",
             description: "Taught super cool classes for two summers: Physics of Roller Coasters and Introduction to Robotics.",
@@ -224,9 +341,19 @@
     const panelInner = document.getElementById('panelInner');
     const panelClose = document.getElementById('panelClose');
     const mainView = document.getElementById('mainView');
+    const homeView = document.getElementById('homeView');
+    const itemView = document.getElementById('itemView');
+    const sidebarList = document.getElementById('sidebarList');
+    const backBtn = document.getElementById('backBtn');
+    const sidebar = document.getElementById('sidebar');
+    const sidebarBackdrop = document.getElementById('sidebarBackdrop');
+    const mobileLibraryBtn = document.getElementById('mobileLibraryBtn');
 
     let activeCard = null;
+    let activeLibraryId = null;
+    let currentFilter = 'all';
 
+    /* ── experience cards ── */
     experiences.forEach((exp, i) => {
         const card = document.createElement('div');
         card.className = 'card';
@@ -275,8 +402,127 @@
         activeCard = null;
     });
 
-    // about modal gallery
-    const aboutPhotos = ['about.jpg', 'physics.jpg', 'winfo.jpg', 'ammu.jpg', 'grad.jpg', 'banquet.jpeg', 'robotics.jpg', 'antigua.jpg', 'cisco.jpg']; // add more photo filenames here to expand gallery
+    /* ── library sidebar ── */
+    function artHtml(item, sizeClass) {
+        const shapeClass = item.shape === 'circle' ? 'is-circle' : 'is-square';
+        if (item.image) {
+            return `<div class="lib-art ${shapeClass} ${sizeClass}" style="background:${item.color}"><img src="${item.image}" alt=""></div>`;
+        }
+        return `<div class="lib-art ${shapeClass} ${sizeClass}" style="background:${item.color}"><span>${item.title[0]}</span></div>`;
+    }
+
+    function renderLibrary(filter) {
+        sidebarList.innerHTML = '';
+        const items = filter === 'all' ? libraryItems : libraryItems.filter(i => i.filter === filter);
+
+        items.forEach(item => {
+            const btn = document.createElement('button');
+            btn.className = 'lib-item' + (item.id === activeLibraryId ? ' active' : '');
+            btn.type = 'button';
+            btn.dataset.id = item.id;
+            btn.innerHTML = `
+                ${artHtml(item, 'lib-art-sm')}
+                <span class="lib-text">
+                    <span class="lib-title">${item.title}</span>
+                    <span class="lib-sub">${item.subtitle}</span>
+                </span>
+            `;
+            btn.addEventListener('click', () => openLibraryItem(item.id, true));
+            sidebarList.appendChild(btn);
+        });
+    }
+
+    function showItem(item) {
+        activeLibraryId = item.id;
+        document.querySelectorAll('.lib-item').forEach(el => {
+            el.classList.toggle('active', el.dataset.id === item.id);
+        });
+
+        detailPanel.classList.remove('open');
+        mainView.classList.remove('shifted');
+        if (activeCard) activeCard.classList.remove('active');
+        activeCard = null;
+
+        document.getElementById('itemType').textContent = item.type;
+        document.getElementById('itemTitle').textContent = item.title;
+        document.getElementById('itemSubtitle').textContent = item.subtitle;
+        document.getElementById('itemPlaceholderText').textContent = item.blurb;
+        document.getElementById('itemBannerArt').innerHTML = artHtml(item, 'lib-art-lg');
+        document.getElementById('itemBanner').style.background =
+            `linear-gradient(transparent 0%, rgba(0,0,0,0.55) 100%), ${item.color}`;
+
+        homeView.classList.add('view-hidden');
+        itemView.classList.remove('view-hidden');
+        mainView.scrollTop = 0;
+        closeMobileSidebar();
+    }
+
+    function openLibraryItem(id, push) {
+        const item = libraryItems.find(i => i.id === id);
+        if (!item) return;
+        showItem(item);
+        if (push) history.pushState({ view: 'item', id }, '', `#/${id}`);
+    }
+
+    function goHome(push) {
+        activeLibraryId = null;
+        document.querySelectorAll('.lib-item').forEach(el => el.classList.remove('active'));
+        itemView.classList.add('view-hidden');
+        homeView.classList.remove('view-hidden');
+        mainView.scrollTop = 0;
+        if (push) history.pushState({ view: 'home' }, '', '#/');
+    }
+
+    backBtn.addEventListener('click', () => goHome(true));
+
+    document.querySelectorAll('#sidebarFilters .filter-chip').forEach(chip => {
+        chip.addEventListener('click', () => {
+            currentFilter = chip.dataset.filter;
+            document.querySelectorAll('#sidebarFilters .filter-chip').forEach(c => c.classList.remove('active'));
+            chip.classList.add('active');
+            renderLibrary(currentFilter);
+        });
+    });
+
+    renderLibrary('all');
+
+    /* ── routing ── */
+    window.addEventListener('popstate', (e) => {
+        const state = e.state;
+        if (state && state.view === 'item' && state.id) {
+            const item = libraryItems.find(i => i.id === state.id);
+            if (item) showItem(item);
+            else goHome(false);
+        } else {
+            goHome(false);
+        }
+    });
+
+    (function initRoute() {
+        const hash = location.hash.replace(/^#\/?/, '');
+        if (hash && libraryItems.some(i => i.id === hash)) {
+            showItem(libraryItems.find(i => i.id === hash));
+            history.replaceState({ view: 'item', id: hash }, '', `#/${hash}`);
+        } else {
+            goHome(false);
+            history.replaceState({ view: 'home' }, '', '#/');
+        }
+    })();
+
+    /* ── mobile sidebar ── */
+    function openMobileSidebar() {
+        sidebar.classList.add('open');
+        sidebarBackdrop.classList.add('open');
+    }
+    function closeMobileSidebar() {
+        sidebar.classList.remove('open');
+        sidebarBackdrop.classList.remove('open');
+    }
+    mobileLibraryBtn.addEventListener('click', openMobileSidebar);
+    sidebarBackdrop.addEventListener('click', closeMobileSidebar);
+
+    /* ── about modal gallery ── */
+    const aboutPhotos = ['about.jpg', 'physics.jpg', 'winfo.jpg', 'ammu.jpg', 'grad.jpg', 'banquet.jpeg', 'robotics.jpg', 'antigua.jpg', 'cisco.jpg'];
     let currentPhoto = 0;
 
     const aboutCard = document.getElementById('aboutCard');
@@ -288,7 +534,6 @@
     const galleryNext = document.getElementById('galleryNext');
     const galleryDots = document.getElementById('galleryDots');
 
-    // build dots
     aboutPhotos.forEach((_, i) => {
         const dot = document.createElement('span');
         dot.className = 'gallery-dot';
@@ -327,26 +572,15 @@
         updateGalleryImg();
     });
     document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+            if (aboutModal.classList.contains('open')) closeAboutModal();
+            else if (sidebar.classList.contains('open')) closeMobileSidebar();
+            else if (!itemView.classList.contains('view-hidden')) goHome(true);
+        }
         if (!aboutModal.classList.contains('open')) return;
-        if (e.key === 'Escape') closeAboutModal();
         if (e.key === 'ArrowLeft') { currentPhoto = (currentPhoto - 1 + aboutPhotos.length) % aboutPhotos.length; updateGalleryImg(); }
         if (e.key === 'ArrowRight') { currentPhoto = (currentPhoto + 1) % aboutPhotos.length; updateGalleryImg(); }
     });
-
-    /*
-    // on tour toggle
-    const tourShowAll = document.getElementById('tourShowAll');
-    const tourGrid = document.getElementById('tourGrid');
-    const tourExtras = document.querySelectorAll('.tour-extra');
-    let tourExpanded = false;
-    tourExtras.forEach(el => el.style.display = 'none');
-
-    tourShowAll.addEventListener('click', () => {
-        tourExpanded = !tourExpanded;
-        tourExtras.forEach(el => el.style.display = tourExpanded ? 'flex' : 'none');
-        tourShowAll.textContent = tourExpanded ? 'Show less' : `Show all (${tourGrid.children.length})`;
-    });
-    */
 
     // typewriter effect
     (function() {
@@ -359,7 +593,6 @@
                 el.textContent += text[i++];
                 setTimeout(type, 80);
             } else {
-                // blink ~3-4 times (4 × 0.6s = 2.4s), then fade out
                 setTimeout(() => cursor.classList.add('fade-out'), 2400);
             }
         }

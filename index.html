@@ -12,9 +12,9 @@
 <div class="app">
 
     <!-- left library sidebar -->
-    <aside class="sidebar sidebar-collapsed" id="sidebar">
+    <aside class="sidebar" id="sidebar">
         <div class="sidebar-header">
-            <button class="sidebar-title-btn" id="sidebarToggle" type="button" aria-label="Toggle library" aria-expanded="false">
+            <button class="sidebar-title-btn" id="sidebarToggle" type="button" aria-label="Collapse library" aria-expanded="true">
                 <svg class="sidebar-library-icon" viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true">
                     <path d="M3 22a1 1 0 0 1-1-1V3a1 1 0 0 1 2 0v18a1 1 0 0 1-1 1zM15.5 2.134A1 1 0 0 0 14 3v18a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V6.464a1 1 0 0 0-.5-.866l-6-3.464zM9 2a1 1 0 0 0-1 1v18a1 1 0 1 0 2 0V3a1 1 0 0 0-1-1z"/>
                 </svg>
@@ -31,8 +31,6 @@
         <div class="sidebar-filters" id="sidebarFilters">
             <button class="filter-chip active" type="button" data-filter="all">All</button>
             <button class="filter-chip" type="button" data-filter="projects">Projects</button>
-            <button class="filter-chip" type="button" data-filter="clubs">Clubs</button>
-            <button class="filter-chip" type="button" data-filter="events">Events</button>
         </div>
 
         <div class="sidebar-controls">
@@ -77,6 +75,15 @@
                         <button class="show-all-btn">Show all</button>
                     </div>
                     <div class="cards-row" id="cardsRow"></div>
+                </section>
+
+                <!-- education -->
+                <section class="section">
+                    <div class="section-header">
+                        <h2>Education</h2>
+                        <button class="show-all-btn">Show all</button>
+                    </div>
+                    <div class="cards-row" id="educationRow"></div>
                 </section>
 
                 <!-- about -->
@@ -310,7 +317,29 @@
         }
     ];
 
+    const education = [
+        {
+            company: "University of Washington",
+            role: "B.S. Computer Science",
+            period: "2022 – 2026",
+            color: "#4b2e83",
+            image: "uw-allen-school.png",
+            description: "Placeholder — add details about your degree, coursework, and campus involvement here.",
+            skills: ["computer science", "neural computation & engineering"]
+        },
+        {
+            company: "Cisco Networking Academy",
+            role: "Networking Program",
+            period: "Placeholder",
+            color: "#0d274d",
+            image: "cisco.png",
+            description: "Placeholder — add details about your Cisco Networking Academy experience here.",
+            skills: ["networking"]
+        }
+    ];
+
     const cardsRow = document.getElementById('cardsRow');
+    const educationRow = document.getElementById('educationRow');
     const detailPanel = document.getElementById('detailPanel');
     const panelInner = document.getElementById('panelInner');
     const panelClose = document.getElementById('panelClose');
@@ -338,23 +367,27 @@
         setSidebarCollapsed(!sidebar.classList.contains('sidebar-collapsed'));
     });
 
-    /* ── experience cards ── */
-    experiences.forEach((exp, i) => {
-        const card = document.createElement('div');
-        card.className = 'card';
-        card.dataset.index = i;
-        card.innerHTML = `
-            <div class="card-img" style="background:${exp.color}">
-                ${exp.image
-                    ? `<img src="${exp.image}" alt="${exp.company}" style="width:100%;height:100%;object-fit:cover;border-radius:8px;">`
-                    : `<span class="card-letter">${exp.company[0]}</span>`}
-            </div>
-            <p class="card-company">${exp.company}</p>
-            <p class="card-role">${exp.role}</p>
-        `;
-        card.addEventListener('click', () => openPanel(exp, card));
-        cardsRow.appendChild(card);
-    });
+    /* ── experience & education cards ── */
+    function renderCardRow(items, rowEl) {
+        items.forEach((exp) => {
+            const card = document.createElement('div');
+            card.className = 'card';
+            card.innerHTML = `
+                <div class="card-img" style="background:${exp.color}">
+                    ${exp.image
+                        ? `<img src="${exp.image}" alt="${exp.company}" style="width:100%;height:100%;object-fit:cover;border-radius:8px;">`
+                        : `<span class="card-letter">${exp.company[0]}</span>`}
+                </div>
+                <p class="card-company">${exp.company}</p>
+                <p class="card-role">${exp.role}</p>
+            `;
+            card.addEventListener('click', () => openPanel(exp, card));
+            rowEl.appendChild(card);
+        });
+    }
+
+    renderCardRow(experiences, cardsRow);
+    renderCardRow(education, educationRow);
 
     function openPanel(exp, card) {
         if (activeCard) activeCard.classList.remove('active');

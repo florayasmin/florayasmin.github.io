@@ -12,9 +12,9 @@
 <div class="app">
 
     <!-- left library sidebar -->
-    <aside class="sidebar" id="sidebar">
+    <aside class="sidebar sidebar-collapsed" id="sidebar">
         <div class="sidebar-header">
-            <button class="sidebar-title-btn" type="button" aria-label="Your Library">
+            <button class="sidebar-title-btn" id="sidebarToggle" type="button" aria-label="Toggle library" aria-expanded="false">
                 <svg class="sidebar-library-icon" viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true">
                     <path d="M3 22a1 1 0 0 1-1-1V3a1 1 0 0 1 2 0v18a1 1 0 0 1-1 1zM15.5 2.134A1 1 0 0 0 14 3v18a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V6.464a1 1 0 0 0-.5-.866l-6-3.464zM9 2a1 1 0 0 0-1 1v18a1 1 0 1 0 2 0V3a1 1 0 0 0-1-1z"/>
                 </svg>
@@ -58,18 +58,11 @@
             <div class="profile-banner">
                 <div class="profile-header">
                     <div class="profile-avatar">
-                        <img src="flo.png" alt="flora" onerror="this.style.display='none'">
+                        <img src="profile.jpg" alt="flora" onerror="this.style.display='none'">
                     </div>
                     <div class="profile-details">
                         <span class="profile-label">Profile</span>
                         <h1 class="profile-name"><span id="typewriter"></span><span class="type-cursor">|</span></h1>
-                        <div class="profile-meta">
-                            <span>B.S. Computer Science</span>
-                            <span class="dot">•</span>
-                            <span>Minor: Neural Computation &amp; Engineering</span>
-                            <span class="dot">•</span>
-                            <span>University of Washington</span>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -327,12 +320,23 @@
     const sidebarList = document.getElementById('sidebarList');
     const backBtn = document.getElementById('backBtn');
     const sidebar = document.getElementById('sidebar');
+    const sidebarToggle = document.getElementById('sidebarToggle');
     const sidebarBackdrop = document.getElementById('sidebarBackdrop');
     const mobileLibraryBtn = document.getElementById('mobileLibraryBtn');
 
     let activeCard = null;
     let activeLibraryId = null;
     let currentFilter = 'all';
+
+    function setSidebarCollapsed(collapsed) {
+        sidebar.classList.toggle('sidebar-collapsed', collapsed);
+        sidebarToggle.setAttribute('aria-expanded', String(!collapsed));
+        sidebarToggle.setAttribute('aria-label', collapsed ? 'Expand library' : 'Collapse library');
+    }
+
+    sidebarToggle.addEventListener('click', () => {
+        setSidebarCollapsed(!sidebar.classList.contains('sidebar-collapsed'));
+    });
 
     /* ── experience cards ── */
     experiences.forEach((exp, i) => {
@@ -398,6 +402,8 @@
             btn.className = 'lib-item' + (item.id === activeLibraryId ? ' active' : '');
             btn.type = 'button';
             btn.dataset.id = item.id;
+            btn.title = item.title;
+            btn.setAttribute('aria-label', item.title);
             btn.innerHTML = `
                 ${artHtml(item, 'lib-art-sm')}
                 <span class="lib-text">

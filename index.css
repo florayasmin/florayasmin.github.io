@@ -48,6 +48,37 @@ body {
     flex-direction: column;
     overflow: hidden;
     z-index: 200;
+    transition: width 0.25s ease;
+}
+
+.sidebar.sidebar-collapsed {
+    width: 72px;
+}
+
+.sidebar.sidebar-collapsed .sidebar-title-btn span,
+.sidebar.sidebar-collapsed .sidebar-header-actions,
+.sidebar.sidebar-collapsed .sidebar-filters,
+.sidebar.sidebar-collapsed .sidebar-controls {
+    display: none;
+}
+
+.sidebar.sidebar-collapsed .sidebar-header {
+    justify-content: center;
+    padding: 12px 8px 8px;
+}
+
+.sidebar.sidebar-collapsed .lib-text {
+    display: none;
+}
+
+.sidebar.sidebar-collapsed .lib-item {
+    justify-content: center;
+    padding: 6px 8px;
+}
+
+.sidebar.sidebar-collapsed .sidebar-list {
+    align-items: center;
+    padding: 4px 8px 12px;
 }
 
 .sidebar-header {
@@ -371,7 +402,7 @@ body {
     font-weight: 900;
     letter-spacing: -3px;
     line-height: 1;
-    margin-bottom: 20px;
+    margin-bottom: 0;
 }
 
 .type-cursor {
@@ -1063,7 +1094,11 @@ body {
         bottom: 8px;
         width: min(320px, calc(100vw - 16px));
         transform: translateX(calc(-100% - 16px));
-        transition: transform 0.25s ease;
+        transition: transform 0.25s ease, width 0.25s ease;
+    }
+
+    .sidebar.sidebar-collapsed {
+        width: 72px;
     }
 
     .sidebar.open {

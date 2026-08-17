@@ -12,9 +12,9 @@
 <div class="app">
 
     <!-- left library sidebar -->
-    <aside class="sidebar" id="sidebar">
+    <aside class="sidebar sidebar-collapsed" id="sidebar">
         <div class="sidebar-header">
-            <button class="sidebar-title-btn" id="sidebarToggle" type="button" aria-label="Collapse library" aria-expanded="true">
+            <button class="sidebar-title-btn" id="sidebarToggle" type="button" aria-label="Expand library" aria-expanded="false">
                 <svg class="sidebar-library-icon" viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true">
                     <path d="M3 22a1 1 0 0 1-1-1V3a1 1 0 0 1 2 0v18a1 1 0 0 1-1 1zM15.5 2.134A1 1 0 0 0 14 3v18a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V6.464a1 1 0 0 0-.5-.866l-6-3.464zM9 2a1 1 0 0 0-1 1v18a1 1 0 1 0 2 0V3a1 1 0 0 0-1-1z"/>
                 </svg>
@@ -59,7 +59,7 @@
                         <img src="profile.jpg" alt="flora" onerror="this.style.display='none'">
                     </div>
                     <div class="profile-details">
-                        <span class="profile-label">Profile</span>
+                        <span class="profile-label">Hi, nice to meet you! I'm</span>
                         <h1 class="profile-name"><span id="typewriter"></span><span class="type-cursor">|</span></h1>
                     </div>
                 </div>
@@ -154,7 +154,7 @@
             </div>
             <div class="about-modal-body">
                 <p class="about-modal-stat">based in seattle, wa</p>
-                <p class="about-modal-bio">i love creating things that blend design and impact, exploring new cultures &amp; languages, teaching, and competing in hackathons. focused on <strong>ai/ml</strong> and <strong>software engineering</strong>, typically building with java, python, typescript, and html/css/js. also heavily intruiged by biological and physical sciences, interested in engaging in neuro research!</p>
+                <p class="about-modal-bio">i love creating things that blend design and impact, traveling and exploring new cultures &amp; languages, teaching, and competing in hackathons. i’m focused on <strong>ai/ml</strong>, <strong>security</strong>, and <strong>software engineering</strong>, typically building with python, java, typescript, and html/css/js. also heavily intrigued by biological and physical sciences, i’d love to chat about any neuro-related research!</p>
             </div>
         </div>
     </div>
@@ -262,13 +262,22 @@
 
     const experiences = [
         {
+            company: "UW Department of Laboratory Medicine and Pathology",
+            role: "Computational Research Assistant",
+            period: "Sept 2026 - Present",
+            color: "#ffffff",
+            image: "uwmed.jpg",
+            description: "Analyzing hippocampal electrophysiology datasets with Python to understand the brain's mechanisms of memory and decision-making.",
+            skills: ["tbd 👀"]
+        },
+        {
             company: "Visa",
             role: "Software Engineer Intern",
-            period: "Jun 2026 – Aug 2026",
-            color: "#4a7c59",
-            image: "visa.jpg",
-            description: "Incoming Summer 2026",
-            skills: ["tbd 👀"]
+            period: "Jun 2026 – Sept 2026",
+            color: "#ffffff",
+            image: "visa-logo.png",
+            description: "Engineered a pluggable UI context extraction framework to deliver structured context to backend AI workflows, enhancing LLM reliability across analytics dashboards.",
+            skills: ["python", "langgraph", "react", "large language models", "ai-assisted coding", "software design"]
         },
         {
             company: "Bideshi",
@@ -321,20 +330,20 @@
         {
             company: "University of Washington",
             role: "B.S. Computer Science",
-            period: "2022 – 2026",
+            period: "Expected June 2028",
             color: "#4b2e83",
             image: "uw-allen-school.png",
-            description: "Placeholder — add details about your degree, coursework, and campus involvement here.",
-            skills: ["computer science", "neural computation & engineering"]
+            description: "Minor: Neural Computation & Engineering",
+            skills: ["data structures & algorithms", "java", "c", "foundational math"]
         },
         {
             company: "Cisco Networking Academy",
-            role: "Networking Program",
-            period: "Placeholder",
-            color: "#0d274d",
+            role: "Extracurricular",
+            period: "Sept 2022 - June 2025",
+            color: "#ffffff",
             image: "cisco.png",
-            description: "Placeholder — add details about your Cisco Networking Academy experience here.",
-            skills: ["networking"]
+            description: "Completed CCNA, CCNP, and CCSP Security courses. Passed CCNA certification exam. Also completed AWS Cloud Foundations and CompTIA Security+ courses. Lab reports on <a href=\"https://github.com/florayasmin/cisco-labs\" target=\"_blank\" rel=\"noopener\" style=\"color:#1DB954;text-decoration:none;\">GitHub</a>.",
+            skills: ["ip routing/switching", "cybersecurity", "aws", "vpn", "wireless access points", "fortinet/palo alto firewalls"]
         }
     ];
 

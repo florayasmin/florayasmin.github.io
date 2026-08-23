@@ -397,15 +397,6 @@ body {
     object-fit: cover;
 }
 
-.profile-label {
-    display: block;
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    margin-bottom: 10px;
-}
-
 .profile-name {
     font-size: clamp(48px, 8vw, 96px);
     font-weight: 900;

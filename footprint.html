@@ -30,6 +30,7 @@
 
     <div class="map-wrap" id="mapWrap">
         <svg id="worldMap" role="img" aria-label="World map of places Flora has visited"></svg>
+        <div class="map-tooltip" id="mapTooltip" hidden></div>
     </div>
 
     <p class="footprint-mobile-note">Whoops! This page is experienced better on desktop, please switch your device :)</p>
@@ -53,38 +54,142 @@
 
 <script>
     /* ISO 3166-1 numeric IDs used by world-atlas */
-    const places = {
+    const countries = {
         "028": {
-            id: "ag",
             name: "Antigua and Barbuda",
             story: "TBD — story from Antigua and Barbuda goes here.",
-            photos: [],
-            marker: [-61.7969, 17.0608]
+            photos: []
         },
         "050": {
-            id: "bd",
             name: "Bangladesh",
             story: "TBD — story from Bangladesh goes here.",
-            photos: [],
-            marker: [90.3563, 23.6850]
+            photos: []
         },
         "380": {
-            id: "it",
             name: "Italy",
             story: "TBD — story from Italy goes here.",
-            photos: [],
-            marker: [12.5674, 41.8719]
+            photos: []
         },
         "682": {
-            id: "sa",
             name: "Saudi Arabia",
             story: "TBD — story from Saudi Arabia goes here.",
-            photos: [],
-            marker: [45.0792, 23.8859]
+            photos: []
+        },
+        "826": {
+            name: "England",
+            story: "TBD — story from England goes here.",
+            photos: []
+        },
+        "784": {
+            name: "United Arab Emirates",
+            story: "TBD — story from the UAE goes here.",
+            photos: []
+        },
+        "792": {
+            name: "Turkey",
+            story: "TBD — story from Turkey goes here.",
+            photos: []
+        },
+        "756": {
+            name: "Switzerland",
+            story: "TBD — story from Switzerland goes here.",
+            photos: []
+        },
+        "840": {
+            name: "United States",
+            story: "TBD — story from the United States goes here.",
+            photos: []
+        },
+        "124": {
+            name: "Canada",
+            story: "TBD — story from Canada goes here.",
+            photos: []
         }
     };
 
-    const visitedIds = new Set(Object.keys(places));
+    /* City / place markers — hover shows label; special: true enables click stories */
+    const markers = [
+        { place: "Antigua and Barbuda", country: "Antigua and Barbuda", coords: [-61.7969, 17.0608], special: true, story: "TBD — story from Antigua and Barbuda goes here.", photos: [] },
+        { place: "Dhaka", country: "Bangladesh", coords: [90.3563, 23.6850], special: true, story: "TBD — story from Dhaka goes here.", photos: [] },
+        { place: "Italy", country: "Italy", coords: [12.5674, 41.8719], special: true, story: "TBD — story from Italy goes here.", photos: [] },
+        { place: "Saudi Arabia", country: "Saudi Arabia", coords: [45.0792, 23.8859], special: true, story: "TBD — story from Saudi Arabia goes here.", photos: [] },
+        { place: "London", country: "England", coords: [-0.1276, 51.5074] },
+        { place: "Dubai", country: "United Arab Emirates", coords: [55.2708, 25.2048] },
+        { place: "Istanbul", country: "Turkey", coords: [28.9784, 41.0082], special: true, story: "TBD — story from Istanbul goes here.", photos: [] },
+        { place: "Switzerland", country: "Switzerland", coords: [8.2275, 46.8182] },
+        { place: "Spokane", country: "Washington", coords: [-117.4260, 47.6588], special: true, story: "TBD — story from Spokane goes here.", photos: [] },
+        { place: "Portland", country: "Oregon", coords: [-122.6765, 45.5152] },
+        { place: "Bay Area", country: "California", coords: [-122.4194, 37.7749] },
+        { place: "Los Angeles", country: "California", coords: [-118.2437, 34.0522] },
+        { place: "Orlando", country: "Florida", coords: [-81.3792, 28.5383] },
+        { place: "Miami", country: "Florida", coords: [-80.1918, 25.7617] },
+        { place: "Houston", country: "Texas", coords: [-95.3698, 29.7604], special: true, story: "TBD — story from Houston goes here.", photos: [] },
+        { place: "Atlanta", country: "Georgia", coords: [-84.3880, 33.7490] },
+        { place: "Pittsburgh", country: "Pennsylvania", coords: [-79.9959, 40.4406] },
+        { place: "Boston", country: "Massachusetts", coords: [-71.0589, 42.3601] },
+        { place: "Vancouver", country: "Canada", coords: [-123.1207, 49.2827] }
+    ];
+
+    const visitedIds = new Set(Object.keys(countries));
+
+    function markerLabel(m) {
+        return m.place === m.country ? m.country : `${m.place}, ${m.country}`;
+    }
+
+    function polygonCentroid(poly) {
+        const ring = poly[0];
+        let lon = 0;
+        let lat = 0;
+        for (let i = 0; i < ring.length; i++) {
+            lon += ring[i][0];
+            lat += ring[i][1];
+        }
+        return [lon / ring.length, lat / ring.length];
+    }
+
+    function isAlaskaPolygon(poly) {
+        const [lon, lat] = polygonCentroid(poly);
+        // Alaska sits far north/west
+        return lat > 50 && lon < -129;
+    }
+
+    function isHawaiiPolygon(poly) {
+        const [lon, lat] = polygonCentroid(poly);
+        return lat > 18 && lat < 24 && lon < -154 && lon > -162;
+    }
+
+    function featuresForMap(features) {
+        const out = [];
+        features.forEach((feature) => {
+            const id = String(feature.id).padStart(3, "0");
+            if (id !== "840" || feature.geometry.type !== "MultiPolygon") {
+                out.push(feature);
+                return;
+            }
+
+            const mainland = [];
+            const excluded = [];
+            feature.geometry.coordinates.forEach((poly) => {
+                (isAlaskaPolygon(poly) || isHawaiiPolygon(poly) ? excluded : mainland).push(poly);
+            });
+
+            if (mainland.length) {
+                out.push({
+                    ...feature,
+                    id: 840,
+                    geometry: { type: "MultiPolygon", coordinates: mainland }
+                });
+            }
+            if (excluded.length) {
+                out.push({
+                    ...feature,
+                    id: "840-excluded",
+                    geometry: { type: "MultiPolygon", coordinates: excluded }
+                });
+            }
+        });
+        return out;
+    }
 
     const modal = document.getElementById("placeModal");
     const modalTitle = document.getElementById("placeModalTitle");
@@ -94,15 +199,15 @@
     const modalBackdrop = document.getElementById("placeModalBackdrop");
 
     function openPlace(place) {
-        modalTitle.textContent = place.name;
-        modalStory.textContent = place.story;
+        modalTitle.textContent = place.name || markerLabel(place);
+        modalStory.textContent = place.story || "TBD";
         modalPhotos.innerHTML = "";
 
-        if (place.photos.length) {
+        if (place.photos && place.photos.length) {
             place.photos.forEach((src) => {
                 const img = document.createElement("img");
                 img.src = src;
-                img.alt = place.name;
+                img.alt = place.name || place.place;
                 modalPhotos.appendChild(img);
             });
         } else {
@@ -130,16 +235,17 @@
     });
 
     async function drawMap() {
-        const wrap = document.getElementById("mapWrap");
         const width = 1200;
         const height = 620;
+        const wrap = document.getElementById("mapWrap");
+        const tooltip = document.getElementById("mapTooltip");
 
         const svg = d3.select("#worldMap")
             .attr("viewBox", `0 0 ${width} ${height}`)
             .attr("preserveAspectRatio", "xMidYMid meet");
 
         const world = await d3.json("https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json");
-        const countries = topojson.feature(world, world.objects.countries);
+        const countryFeatures = topojson.feature(world, world.objects.countries);
         const land = topojson.feature(world, world.objects.land);
 
         const projection = d3.geoNaturalEarth1()
@@ -148,8 +254,8 @@
         const path = d3.geoPath(projection);
 
         const isNarrow = window.matchMedia("(max-width: 700px)").matches;
-        const markerR = isNarrow ? 9 : 7;
-        const hitR = isNarrow ? 24 : 16;
+        const markerR = isNarrow ? 8 : 5.5;
+        const hitR = isNarrow ? 22 : 14;
 
         svg.append("path")
             .datum({ type: "Sphere" })
@@ -164,28 +270,41 @@
         svg.append("g")
             .attr("class", "map-countries")
             .selectAll("path")
-            .data(countries.features)
+            .data(featuresForMap(countryFeatures.features))
             .join("path")
             .attr("d", path)
-            .attr("class", (d) => visitedIds.has(String(d.id).padStart(3, "0")) ? "map-country visited" : "map-country")
-            .attr("data-id", (d) => String(d.id).padStart(3, "0"))
-            .on("click", (event, d) => {
+            .attr("class", (d) => {
                 const id = String(d.id).padStart(3, "0");
-                if (places[id]) openPlace(places[id]);
-            });
+                return visitedIds.has(id) ? "map-country visited" : "map-country";
+            })
+            .attr("data-id", (d) => String(d.id));
+
+        function showTooltip(event, place) {
+            tooltip.hidden = false;
+            tooltip.textContent = markerLabel(place);
+            const rect = wrap.getBoundingClientRect();
+            const x = event.clientX - rect.left;
+            const y = event.clientY - rect.top;
+            tooltip.style.left = `${x}px`;
+            tooltip.style.top = `${y}px`;
+        }
+
+        function hideTooltip() {
+            tooltip.hidden = true;
+        }
 
         const markerLayer = svg.append("g").attr("class", "map-markers");
 
-        Object.values(places).forEach((place) => {
-            const point = projection(place.marker);
+        // Draw special (clickable) markers last so they sit on top
+        [...markers].sort((a, b) => Number(!!a.special) - Number(!!b.special)).forEach((place) => {
+            const point = projection(place.coords);
             if (!point) return;
             const [x, y] = point;
 
             const g = markerLayer.append("g")
-                .attr("class", "map-marker")
+                .attr("class", place.special ? "map-marker special" : "map-marker")
                 .attr("transform", `translate(${x},${y})`)
-                .style("cursor", "pointer")
-                .on("click", () => openPlace(place));
+                .style("cursor", place.special ? "pointer" : "default");
 
             g.append("circle")
                 .attr("r", markerR)
@@ -193,7 +312,14 @@
 
             g.append("circle")
                 .attr("r", hitR)
-                .attr("class", "map-marker-hit");
+                .attr("class", "map-marker-hit")
+                .on("mouseenter", (event) => showTooltip(event, place))
+                .on("mousemove", (event) => showTooltip(event, place))
+                .on("mouseleave", hideTooltip)
+                .on("click", (event) => {
+                    event.stopPropagation();
+                    if (place.special) openPlace(place);
+                });
         });
     }
 

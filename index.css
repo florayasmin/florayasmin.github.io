@@ -218,15 +218,23 @@ img {
 .exp-link,
 .exp-tags {
     margin: 0 0 4px;
+    display: block;
 }
 
 .exp-link {
     text-decoration: underline;
     text-underline-offset: 2px;
+    color: #666;
+    width: fit-content;
+}
+
+.exp-link:hover {
+    color: #1a1a1a;
 }
 
 .exp-tags {
     color: #8a8a8a;
+    font-size: 13px;
 }
 
 .placeholder-page {

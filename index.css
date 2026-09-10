@@ -1,3 +1,47 @@
+:root {
+    --bg: #fff5e7;
+    --text: #1a1a1a;
+    --text-muted: #5a5a5a;
+    --text-soft: #9a948b;
+    --text-mid: #3a3a3a;
+    --nav-idle: #b7b0a5;
+    --detail: #666;
+    --tags: #8a8a8a;
+    --logo-bg: #fff;
+    --map-land: #efe2cf;
+    --map-visited: #c4a574;
+    --map-visited-hover: #b08d55;
+    --map-marker: #8b6914;
+    --map-marker-hover: #6d5210;
+    --modal-border: #ead9c2;
+    --modal-chip: #efe2cf;
+    --modal-backdrop: rgba(40, 30, 20, 0.45);
+    --slot-text: #8a7a66;
+    --footer: #9a948b;
+}
+
+html[data-theme="dark"] {
+    --bg: #1b1924;
+    --text: #fff5e7;
+    --text-muted: #b7b0a5;
+    --text-soft: #8a8494;
+    --text-mid: #d4cfc4;
+    --nav-idle: #6f6a78;
+    --detail: #b7b0a5;
+    --tags: #8a8494;
+    --logo-bg: #2a2735;
+    --map-land: #2a2735;
+    --map-visited: #c4a574;
+    --map-visited-hover: #d4b88a;
+    --map-marker: #e0c089;
+    --map-marker-hover: #fff5e7;
+    --modal-border: #3a3648;
+    --modal-chip: #2a2735;
+    --modal-backdrop: rgba(0, 0, 0, 0.55);
+    --slot-text: #8a8494;
+    --footer: #8a8494;
+}
+
 *, *::before, *::after {
     box-sizing: border-box;
     margin: 0;
@@ -10,11 +54,14 @@ html {
 
 body {
     font-family: "EB Garamond", Garamond, "Times New Roman", serif;
-    background-color: #fff5e7;
-    color: #1a1a1a;
+    background-color: var(--bg);
+    color: var(--text);
     min-height: 100vh;
     line-height: 1.55;
     -webkit-font-smoothing: antialiased;
+    display: flex;
+    flex-direction: column;
+    transition: background-color 0.2s ease, color 0.2s ease;
 }
 
 a {
@@ -41,13 +88,13 @@ img {
 .nav-link {
     font-size: 22px;
     font-weight: 400;
-    color: #b7b0a5;
+    color: var(--nav-idle);
     transition: color 0.15s ease;
 }
 
 .nav-link:hover,
 .nav-link.active {
-    color: #1a1a1a;
+    color: var(--text);
 }
 
 .nav-link.active {
@@ -59,7 +106,8 @@ img {
 .page {
     width: min(760px, calc(100% - 64px));
     margin: 0 auto;
-    padding: 36px 0 96px;
+    padding: 36px 0 48px;
+    flex: 1;
 }
 
 .hero {
@@ -115,7 +163,7 @@ img {
 }
 
 .socials a {
-    color: #1a1a1a;
+    color: var(--text);
     display: inline-flex;
     transition: opacity 0.15s ease;
 }
@@ -161,19 +209,19 @@ img {
     height: 52px;
     object-fit: cover;
     border-radius: 4px;
-    background: #fff;
+    background: var(--logo-bg);
 }
 
 .exp-role {
     font-size: 19px;
     font-weight: 400;
-    color: #1a1a1a;
+    color: var(--text);
     line-height: 1.15;
 }
 
 .exp-org {
     font-size: 16px;
-    color: #9a948b;
+    color: var(--text-soft);
     margin-top: 0;
     line-height: 1.2;
 }
@@ -187,14 +235,14 @@ img {
 
 .exp-dates {
     font-size: 16px;
-    color: #3a3a3a;
+    color: var(--text-mid);
     white-space: nowrap;
     text-align: right;
 }
 
 .exp-chevron {
     font-size: 14px;
-    color: #666;
+    color: var(--detail);
     line-height: 1;
     transition: transform 0.2s ease;
 }
@@ -205,7 +253,7 @@ img {
 
 .exp-details {
     padding: 10px 0 4px 68px;
-    color: #666;
+    color: var(--detail);
     font-size: 16px;
     line-height: 1.45;
 }
@@ -224,24 +272,25 @@ img {
 .exp-link {
     text-decoration: underline;
     text-underline-offset: 2px;
-    color: #666;
+    color: var(--detail);
     width: fit-content;
 }
 
 .exp-link:hover {
-    color: #1a1a1a;
+    color: var(--text);
 }
 
 .exp-tags {
-    color: #8a8a8a;
+    color: var(--tags);
     font-size: 13px;
 }
 
 .placeholder-page {
     width: min(720px, calc(100% - 48px));
     margin: 0 auto;
-    padding: 80px 0 100px;
+    padding: 80px 0 48px;
     text-align: center;
+    flex: 1;
 }
 
 .placeholder-page h1 {
@@ -252,7 +301,38 @@ img {
 
 .placeholder-page p {
     font-size: 20px;
-    color: #5a5a5a;
+    color: var(--text-muted);
+}
+
+.site-footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 20px 16px 28px;
+    font-size: 15px;
+    color: var(--footer);
+}
+
+.theme-toggle {
+    font-family: inherit;
+    font-size: 15px;
+    color: var(--footer);
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+}
+
+.theme-toggle:hover {
+    color: var(--text);
+}
+
+.footer-sep {
+    opacity: 0.7;
 }
 
 @media (max-width: 800px) {
@@ -280,10 +360,6 @@ img {
         margin: 0 auto;
     }
 
-    .exp-item {
-        /* keep block layout on mobile */
-    }
-
     .exp-toggle {
         grid-template-columns: 48px 1fr;
         gap: 14px;
@@ -303,7 +379,7 @@ img {
         text-align: left;
         white-space: normal;
         font-size: 15px;
-        color: #666;
+        color: var(--detail);
     }
 
     .exp-details {
@@ -314,8 +390,6 @@ img {
 /* ── footprint map ── */
 .footprint-body {
     min-height: 100vh;
-    display: flex;
-    flex-direction: column;
 }
 
 .footprint-body .site-header {
@@ -325,7 +399,7 @@ img {
 .footprint-page {
     width: min(1180px, calc(100% - 32px));
     margin: 0 auto;
-    padding: 36px 0 32px;
+    padding: 36px 0 24px;
     flex: 1;
     display: flex;
     flex-direction: column;
@@ -334,14 +408,14 @@ img {
 .footprint-instruction {
     text-align: center;
     font-size: 22px;
-    color: #1a1a1a;
+    color: var(--text);
     margin-bottom: 6px;
 }
 
 .footprint-sub {
     text-align: center;
     font-size: 18px;
-    color: #5a5a5a;
+    color: var(--text-muted);
     margin-bottom: 8px;
 }
 
@@ -365,32 +439,32 @@ img {
 }
 
 .map-ocean {
-    fill: #fff5e7;
+    fill: var(--bg);
 }
 
 .map-land {
-    fill: #efe2cf;
+    fill: var(--map-land);
 }
 
 .map-country {
-    fill: #efe2cf;
-    stroke: #fff5e7;
+    fill: var(--map-land);
+    stroke: var(--bg);
     stroke-width: 0.6;
     transition: fill 0.15s ease;
 }
 
 .map-country.visited {
-    fill: #c4a574;
+    fill: var(--map-visited);
     cursor: pointer;
 }
 
 .map-country.visited:hover {
-    fill: #b08d55;
+    fill: var(--map-visited-hover);
 }
 
 .map-marker-dot {
-    fill: #8b6914;
-    stroke: #fff5e7;
+    fill: var(--map-marker);
+    stroke: var(--bg);
     stroke-width: 1.5;
     pointer-events: none;
 }
@@ -400,13 +474,13 @@ img {
 }
 
 .map-marker:hover .map-marker-dot {
-    fill: #6d5210;
+    fill: var(--map-marker-hover);
 }
 
 .map-fallback {
     text-align: center;
     padding: 48px 20px;
-    color: #5a5a5a;
+    color: var(--text-muted);
     font-size: 18px;
     width: 100%;
 }
@@ -428,7 +502,7 @@ img {
 .place-modal-backdrop {
     position: absolute;
     inset: 0;
-    background: rgba(40, 30, 20, 0.45);
+    background: var(--modal-backdrop);
 }
 
 .place-modal-card {
@@ -437,11 +511,12 @@ img {
     width: min(520px, 100%);
     max-height: min(80vh, 640px);
     overflow-y: auto;
-    background: #fff5e7;
-    border: 1px solid #ead9c2;
+    background: var(--bg);
+    border: 1px solid var(--modal-border);
     border-radius: 14px;
     padding: 28px 28px 24px;
-    box-shadow: 0 16px 48px rgba(40, 30, 20, 0.18);
+    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.18);
+    color: var(--text);
 }
 
 .place-modal-close {
@@ -452,15 +527,15 @@ img {
     height: 32px;
     border: none;
     border-radius: 50%;
-    background: #efe2cf;
-    color: #1a1a1a;
+    background: var(--modal-chip);
+    color: var(--text);
     cursor: pointer;
     font-family: inherit;
     font-size: 14px;
 }
 
 .place-modal-close:hover {
-    background: #ead9c2;
+    opacity: 0.85;
 }
 
 .place-modal-card h2 {
@@ -472,7 +547,7 @@ img {
 
 .place-modal-story {
     font-size: 18px;
-    color: #3a3a3a;
+    color: var(--text-mid);
     margin-bottom: 18px;
     line-height: 1.6;
 }
@@ -493,9 +568,9 @@ img {
 .photo-slot {
     aspect-ratio: 4 / 3;
     border-radius: 8px;
-    background: #efe2cf;
-    border: 1px dashed #c4a574;
-    color: #8a7a66;
+    background: var(--modal-chip);
+    border: 1px dashed var(--map-visited);
+    color: var(--slot-text);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -525,7 +600,7 @@ img {
         text-align: center;
         font-size: 20px;
         line-height: 1.5;
-        color: #3a3a3a;
+        color: var(--text-mid);
         max-width: 18em;
         margin: 0 auto;
         padding: 24px 16px;

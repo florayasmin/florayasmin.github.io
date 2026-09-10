@@ -4,13 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>footprint · flora yasmin</title>
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌷</text></svg>">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌺</text></svg>">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="index.css">
+    <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+    <script src="https://cdn.jsdelivr.net/npm/topojson-client@3"></script>
 </head>
-<body>
+<body class="footprint-body">
 
 <header class="site-header">
     <nav class="nav" aria-label="Primary">
@@ -21,10 +23,183 @@
     </nav>
 </header>
 
-<main class="placeholder-page">
-    <h1>Footprint</h1>
-    <p>Coming soon.</p>
+<main class="footprint-page">
+    <p class="footprint-instruction">A peek into the world I've experienced so far :)</p>
+    <p class="footprint-sub">Click a highlighted country to receive a little snippet from that place.</p>
+
+    <div class="map-wrap" id="mapWrap">
+        <svg id="worldMap" role="img" aria-label="World map of places Flora has visited"></svg>
+    </div>
+
+    <p class="footprint-mobile-note">Whoops! This page is experienced better on desktop, please switch your device :)</p>
 </main>
+
+<div class="place-modal" id="placeModal" hidden>
+    <div class="place-modal-backdrop" id="placeModalBackdrop"></div>
+    <div class="place-modal-card" role="dialog" aria-modal="true" aria-labelledby="placeModalTitle">
+        <button class="place-modal-close" id="placeModalClose" type="button" aria-label="Close">✕</button>
+        <h2 id="placeModalTitle"></h2>
+        <p class="place-modal-story" id="placeModalStory"></p>
+        <div class="place-modal-photos" id="placeModalPhotos"></div>
+    </div>
+</div>
+
+<script>
+    /* ISO 3166-1 numeric IDs used by world-atlas */
+    const places = {
+        "028": {
+            id: "ag",
+            name: "Antigua and Barbuda",
+            story: "TBD — story from Antigua and Barbuda goes here.",
+            photos: [],
+            marker: [-61.7969, 17.0608]
+        },
+        "050": {
+            id: "bd",
+            name: "Bangladesh",
+            story: "TBD — story from Bangladesh goes here.",
+            photos: [],
+            marker: [90.3563, 23.6850]
+        },
+        "380": {
+            id: "it",
+            name: "Italy",
+            story: "TBD — story from Italy goes here.",
+            photos: [],
+            marker: [12.5674, 41.8719]
+        },
+        "682": {
+            id: "sa",
+            name: "Saudi Arabia",
+            story: "TBD — story from Saudi Arabia goes here.",
+            photos: [],
+            marker: [45.0792, 23.8859]
+        }
+    };
+
+    const visitedIds = new Set(Object.keys(places));
+
+    const modal = document.getElementById("placeModal");
+    const modalTitle = document.getElementById("placeModalTitle");
+    const modalStory = document.getElementById("placeModalStory");
+    const modalPhotos = document.getElementById("placeModalPhotos");
+    const modalClose = document.getElementById("placeModalClose");
+    const modalBackdrop = document.getElementById("placeModalBackdrop");
+
+    function openPlace(place) {
+        modalTitle.textContent = place.name;
+        modalStory.textContent = place.story;
+        modalPhotos.innerHTML = "";
+
+        if (place.photos.length) {
+            place.photos.forEach((src) => {
+                const img = document.createElement("img");
+                img.src = src;
+                img.alt = place.name;
+                modalPhotos.appendChild(img);
+            });
+        } else {
+            for (let i = 0; i < 2; i++) {
+                const slot = document.createElement("div");
+                slot.className = "photo-slot";
+                slot.textContent = "Photo TBD";
+                modalPhotos.appendChild(slot);
+            }
+        }
+
+        modal.hidden = false;
+        document.body.style.overflow = "hidden";
+    }
+
+    function closePlace() {
+        modal.hidden = true;
+        document.body.style.overflow = "";
+    }
+
+    modalClose.addEventListener("click", closePlace);
+    modalBackdrop.addEventListener("click", closePlace);
+    document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape" && !modal.hidden) closePlace();
+    });
+
+    async function drawMap() {
+        const wrap = document.getElementById("mapWrap");
+        const width = 1200;
+        const height = 620;
+
+        const svg = d3.select("#worldMap")
+            .attr("viewBox", `0 0 ${width} ${height}`)
+            .attr("preserveAspectRatio", "xMidYMid meet");
+
+        const world = await d3.json("https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json");
+        const countries = topojson.feature(world, world.objects.countries);
+        const land = topojson.feature(world, world.objects.land);
+
+        const projection = d3.geoNaturalEarth1()
+            .fitExtent([[12, 4], [width - 12, height - 8]], land);
+
+        const path = d3.geoPath(projection);
+
+        const isNarrow = window.matchMedia("(max-width: 700px)").matches;
+        const markerR = isNarrow ? 9 : 7;
+        const hitR = isNarrow ? 24 : 16;
+
+        svg.append("path")
+            .datum({ type: "Sphere" })
+            .attr("class", "map-ocean")
+            .attr("d", path);
+
+        svg.append("path")
+            .datum(land)
+            .attr("class", "map-land")
+            .attr("d", path);
+
+        svg.append("g")
+            .attr("class", "map-countries")
+            .selectAll("path")
+            .data(countries.features)
+            .join("path")
+            .attr("d", path)
+            .attr("class", (d) => visitedIds.has(String(d.id).padStart(3, "0")) ? "map-country visited" : "map-country")
+            .attr("data-id", (d) => String(d.id).padStart(3, "0"))
+            .on("click", (event, d) => {
+                const id = String(d.id).padStart(3, "0");
+                if (places[id]) openPlace(places[id]);
+            });
+
+        const markerLayer = svg.append("g").attr("class", "map-markers");
+
+        Object.values(places).forEach((place) => {
+            const point = projection(place.marker);
+            if (!point) return;
+            const [x, y] = point;
+
+            const g = markerLayer.append("g")
+                .attr("class", "map-marker")
+                .attr("transform", `translate(${x},${y})`)
+                .style("cursor", "pointer")
+                .on("click", () => openPlace(place));
+
+            g.append("circle")
+                .attr("r", markerR)
+                .attr("class", "map-marker-dot");
+
+            g.append("circle")
+                .attr("r", hitR)
+                .attr("class", "map-marker-hit");
+        });
+    }
+
+    if (window.matchMedia("(max-width: 700px)").matches) {
+        // Map hidden on mobile — skip loading atlas data
+    } else {
+        drawMap().catch((err) => {
+            console.error(err);
+            document.getElementById("mapWrap").innerHTML =
+                "<p class=\"map-fallback\">Map couldn’t load right now. Please refresh.</p>";
+        });
+    }
+</script>
 
 </body>
 </html>

@@ -310,3 +310,234 @@ img {
         padding-left: 62px;
     }
 }
+
+/* ── footprint map ── */
+.footprint-body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.footprint-body .site-header {
+    padding-bottom: 0;
+}
+
+.footprint-page {
+    width: min(1180px, calc(100% - 32px));
+    margin: 0 auto;
+    padding: 36px 0 32px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.footprint-instruction {
+    text-align: center;
+    font-size: 22px;
+    color: #1a1a1a;
+    margin-bottom: 6px;
+}
+
+.footprint-sub {
+    text-align: center;
+    font-size: 18px;
+    color: #5a5a5a;
+    margin-bottom: 8px;
+}
+
+.map-wrap {
+    width: 100%;
+    flex: 1;
+    min-height: min(68vh, 640px);
+    background: transparent;
+    border: none;
+    border-radius: 0;
+    overflow: visible;
+    display: flex;
+    align-items: center;
+}
+
+#worldMap {
+    width: 100%;
+    height: 100%;
+    min-height: min(68vh, 640px);
+    display: block;
+}
+
+.map-ocean {
+    fill: #fff5e7;
+}
+
+.map-land {
+    fill: #efe2cf;
+}
+
+.map-country {
+    fill: #efe2cf;
+    stroke: #fff5e7;
+    stroke-width: 0.6;
+    transition: fill 0.15s ease;
+}
+
+.map-country.visited {
+    fill: #c4a574;
+    cursor: pointer;
+}
+
+.map-country.visited:hover {
+    fill: #b08d55;
+}
+
+.map-marker-dot {
+    fill: #8b6914;
+    stroke: #fff5e7;
+    stroke-width: 1.5;
+    pointer-events: none;
+}
+
+.map-marker-hit {
+    fill: transparent;
+}
+
+.map-marker:hover .map-marker-dot {
+    fill: #6d5210;
+}
+
+.map-fallback {
+    text-align: center;
+    padding: 48px 20px;
+    color: #5a5a5a;
+    font-size: 18px;
+    width: 100%;
+}
+
+.place-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+}
+
+.place-modal[hidden] {
+    display: none;
+}
+
+.place-modal-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(40, 30, 20, 0.45);
+}
+
+.place-modal-card {
+    position: relative;
+    z-index: 1;
+    width: min(520px, 100%);
+    max-height: min(80vh, 640px);
+    overflow-y: auto;
+    background: #fff5e7;
+    border: 1px solid #ead9c2;
+    border-radius: 14px;
+    padding: 28px 28px 24px;
+    box-shadow: 0 16px 48px rgba(40, 30, 20, 0.18);
+}
+
+.place-modal-close {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    width: 32px;
+    height: 32px;
+    border: none;
+    border-radius: 50%;
+    background: #efe2cf;
+    color: #1a1a1a;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 14px;
+}
+
+.place-modal-close:hover {
+    background: #ead9c2;
+}
+
+.place-modal-card h2 {
+    font-size: 30px;
+    font-weight: 700;
+    margin-bottom: 12px;
+    padding-right: 36px;
+}
+
+.place-modal-story {
+    font-size: 18px;
+    color: #3a3a3a;
+    margin-bottom: 18px;
+    line-height: 1.6;
+}
+
+.place-modal-photos {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+
+.place-modal-photos img {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.photo-slot {
+    aspect-ratio: 4 / 3;
+    border-radius: 8px;
+    background: #efe2cf;
+    border: 1px dashed #c4a574;
+    color: #8a7a66;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 15px;
+}
+
+.footprint-mobile-note {
+    display: none;
+}
+
+@media (max-width: 700px) {
+    .footprint-page {
+        width: calc(100% - 20px);
+        padding-top: 24px;
+        justify-content: center;
+        min-height: 60vh;
+    }
+
+    .footprint-instruction,
+    .footprint-sub,
+    .map-wrap {
+        display: none;
+    }
+
+    .footprint-mobile-note {
+        display: block;
+        text-align: center;
+        font-size: 20px;
+        line-height: 1.5;
+        color: #3a3a3a;
+        max-width: 18em;
+        margin: 0 auto;
+        padding: 24px 16px;
+    }
+}
+
+@media (max-width: 600px) {
+    .place-modal-photos {
+        grid-template-columns: 1fr;
+    }
+
+    .place-modal-card {
+        padding: 24px 18px 18px;
+    }
+}

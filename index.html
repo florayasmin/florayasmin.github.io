@@ -3,646 +3,173 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>flora's portfolio</title>
+    <title>flora yasmin</title>
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌷</text></svg>">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="index.css">
 </head>
 <body>
 
-<div class="app">
+<header class="site-header">
+    <nav class="nav" aria-label="Primary">
+        <a href="index.html" class="nav-link active">about</a>
+        <a href="#experience" class="nav-link">experience</a>
+        <a href="footprint.html" class="nav-link">footprint</a>
+        <a href="blog.html" class="nav-link">blog</a>
+    </nav>
+</header>
 
-    <!-- left library sidebar -->
-    <aside class="sidebar sidebar-collapsed" id="sidebar">
-        <div class="sidebar-header">
-            <button class="sidebar-title-btn" id="sidebarToggle" type="button" aria-label="Expand library" aria-expanded="false">
-                <svg class="sidebar-library-icon" viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true">
-                    <path d="M3 22a1 1 0 0 1-1-1V3a1 1 0 0 1 2 0v18a1 1 0 0 1-1 1zM15.5 2.134A1 1 0 0 0 14 3v18a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V6.464a1 1 0 0 0-.5-.866l-6-3.464zM9 2a1 1 0 0 0-1 1v18a1 1 0 1 0 2 0V3a1 1 0 0 0-1-1z"/>
-                </svg>
-                <span>Flora's Library</span>
-            </button>
-            <div class="sidebar-header-actions">
-                <button class="sidebar-icon-btn" type="button" title="Create" aria-label="Create">
-                    <svg viewBox="0 0 16 16" width="16" height="16" fill="currentColor"><path d="M15.25 8a.75.75 0 0 1-.75.75H8.75v5.75a.75.75 0 0 1-1.5 0V8.75H1.5a.75.75 0 0 1 0-1.5h5.75V1.5a.75.75 0 0 1 1.5 0v5.75h5.75a.75.75 0 0 1 .75.75z"/></svg>
-                    <span>Create</span>
+<main class="page">
+    <section class="hero" aria-label="About">
+        <div class="hero-photo">
+            <img src="floraframe.png" alt="Flora in an ornate gold frame">
+        </div>
+        <div class="hero-copy">
+            <h1>Hi, I'm Flora!</h1>
+            <p class="hero-location">Based in Seattle, Washington</p>
+            <p class="hero-bio">I currently study Computer Science and Neural Engineering at the UW. I've previously interned at Visa and a couple of other organizations. I enjoy teaching, competing in hackathons, learning new languages, and traveling.</p>
+            <p class="hero-more">Read more <a href="blog.html">here</a>.</p>
+            <div class="socials" aria-label="Social links">
+                <a href="https://linkedin.com/in/florayasmin" target="_blank" rel="noopener" aria-label="LinkedIn">
+                    <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 1 1 0-4.125 2.062 2.062 0 0 1 0 4.125zM7.119 20.452H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                </a>
+                <a href="https://github.com/florayasmin" target="_blank" rel="noopener" aria-label="GitHub">
+                    <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+                </a>
+                <a href="mailto:fyasmin@uw.edu" aria-label="Email">
+                    <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"/></svg>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section class="experience" id="experience" aria-labelledby="experience-heading">
+        <h2 id="experience-heading">Work Experience</h2>
+        <ul class="exp-list">
+            <li class="exp-item">
+                <button class="exp-toggle" type="button" aria-expanded="false">
+                    <img class="exp-logo" src="uw-allen-school.png" alt="">
+                    <div class="exp-text">
+                        <p class="exp-role">CSE 190B Teaching Assistant</p>
+                        <p class="exp-org">Paul G. Allen School of Computer Science and Engineering</p>
+                    </div>
+                    <span class="exp-meta">
+                        <span class="exp-dates">Sept 2026 – Present</span>
+                        <span class="exp-chevron" aria-hidden="true">▾</span>
+                    </span>
                 </button>
-            </div>
-        </div>
-
-        <div class="sidebar-filters" id="sidebarFilters">
-            <button class="filter-chip active" type="button" data-filter="all">All</button>
-            <button class="filter-chip" type="button" data-filter="projects">Projects</button>
-        </div>
-
-        <div class="sidebar-controls">
-            <button class="sidebar-search-btn" type="button" aria-label="Search" title="Search">
-                <svg viewBox="0 0 16 16" width="16" height="16" fill="currentColor"><path d="M7 1a6 6 0 1 0 3.67 10.67l3.83 3.83a1 1 0 0 0 1.41-1.41l-3.83-3.83A6 6 0 0 0 7 1zm-4 6a4 4 0 1 1 8 0 4 4 0 0 1-8 0z"/></svg>
-            </button>
-            <button class="sidebar-sort-btn" type="button">
-                <span>Recents</span>
-                <svg viewBox="0 0 16 16" width="14" height="14" fill="currentColor"><path d="M15 14.5H5V13h10v1.5zm0-5.75H5v-1.5h10v1.5zM15 3H5V1.5h10V3zM3 16l-2.5-3h5L3 16zm0-11.5L.5 1.5h5L3 4.5z"/></svg>
-            </button>
-        </div>
-
-        <nav class="sidebar-list" id="sidebarList" aria-label="Library"></nav>
-    </aside>
-
-    <!-- main scrollable view -->
-    <div class="main-view" id="mainView">
-
-        <!-- HOME: profile + experiences -->
-        <div class="view" id="homeView">
-
-            <!-- profile banner -->
-            <div class="profile-banner">
-                <div class="profile-header">
-                    <div class="profile-avatar">
-                        <img src="profile.jpg" alt="flora" onerror="this.style.display='none'">
-                    </div>
-                    <div class="profile-details">
-                        <h1 class="profile-name"><span id="typewriter"></span><span class="type-cursor">|</span></h1>
-                    </div>
+                <div class="exp-details" hidden>
+                    <p class="exp-desc">TBD</p>
+                    <p class="exp-link">TBD</p>
+                    <p class="exp-tags">TBD</p>
                 </div>
-            </div>
-
-            <!-- main -->
-            <div class="content">
-
-                <!-- work experience -->
-                <section class="section">
-                    <div class="section-header">
-                        <h2>Work Experience</h2>
-                        <button class="show-all-btn">Show all</button>
+            </li>
+            <li class="exp-item">
+                <button class="exp-toggle" type="button" aria-expanded="false">
+                    <img class="exp-logo" src="uwmed.jpg" alt="">
+                    <div class="exp-text">
+                        <p class="exp-role">Computational Research Assistant</p>
+                        <p class="exp-org">UW School of Medicine, Anna Gillespie Lab</p>
                     </div>
-                    <div class="cards-row" id="cardsRow"></div>
-                </section>
-
-                <!-- education -->
-                <section class="section">
-                    <div class="section-header">
-                        <h2>Education</h2>
-                        <button class="show-all-btn">Show all</button>
-                    </div>
-                    <div class="cards-row" id="educationRow"></div>
-                </section>
-
-                <!-- about -->
-                <section class="section">
-                    <h2 class="about-heading">About</h2>
-                    <div class="about-card" id="aboutCard">
-                        <div class="about-placeholder-img"></div>
-                        <img src="about.jpg" alt="flora" class="about-img" onerror="this.style.display='none'">
-                        <div class="about-overlay">
-                            <p class="about-stat">based in seattle, wa</p>
-                            <p class="about-bio">i love creating things that blend design and impact, traveling and exploring new cultures &amp; languages, teaching, and competing in hackathons. i’m focused on <strong>ai/ml</strong>, <strong>security</strong>, and <strong>software engineering</strong>, typically building with python, java, typescript, and html/css/js. also heavily intrigued by biological and physical sciences, i’d love to chat about any neuro-related research!</p>
-                        </div>
-                    </div>
-                </section>
-
-                <!-- footer -->
-                <div class="footer">
-                    <p class="footer-label">let's connect</p>
-                    <div class="footer-links">
-                        <a href="mailto:fyasmin@uw.edu">email</a>
-                        <a href="https://linkedin.com/in/florayasmin" target="_blank" rel="noopener">linkedin</a>
-                        <a href="https://github.com/florayasmin" target="_blank" rel="noopener">github</a>
-                    </div>
-                    <p class="footer-credit">made with ♥ by flora</p>
-                </div>
-
-            </div>
-        </div>
-
-        <!-- ITEM: placeholder detail page -->
-        <div class="view view-hidden" id="itemView">
-            <div class="item-page" id="itemPage">
-                <button class="back-btn" id="backBtn" type="button">
-                    <svg viewBox="0 0 16 16" width="16" height="16" fill="currentColor" aria-hidden="true"><path d="M11.03 3.47a.75.75 0 0 1 0 1.06L6.56 9l4.47 4.47a.75.75 0 1 1-1.06 1.06l-5-5a.75.75 0 0 1 0-1.06l5-5a.75.75 0 0 1 1.06 0z"/></svg>
-                    <span>Back</span>
+                    <span class="exp-meta">
+                        <span class="exp-dates">Sept 2026 – Present</span>
+                        <span class="exp-chevron" aria-hidden="true">▾</span>
+                    </span>
                 </button>
-                <div class="item-banner" id="itemBanner">
-                    <div class="item-banner-art" id="itemBannerArt"></div>
-                    <div class="item-banner-details">
-                        <span class="item-type" id="itemType">Playlist</span>
-                        <h1 class="item-title" id="itemTitle"></h1>
-                        <p class="item-subtitle" id="itemSubtitle"></p>
+                <div class="exp-details" hidden>
+                    <p class="exp-desc">TBD</p>
+                    <p class="exp-link">TBD</p>
+                    <p class="exp-tags">TBD</p>
+                </div>
+            </li>
+            <li class="exp-item">
+                <button class="exp-toggle" type="button" aria-expanded="false">
+                    <img class="exp-logo" src="gekkoc.png" alt="">
+                    <div class="exp-text">
+                        <p class="exp-role">Software Engineer Intern</p>
+                        <p class="exp-org">Gekko Corporation</p>
                     </div>
+                    <span class="exp-meta">
+                        <span class="exp-dates">Sept 2026 – Present</span>
+                        <span class="exp-chevron" aria-hidden="true">▾</span>
+                    </span>
+                </button>
+                <div class="exp-details" hidden>
+                    <p class="exp-desc">TBD</p>
+                    <p class="exp-link">TBD</p>
+                    <p class="exp-tags">TBD</p>
                 </div>
-                <div class="item-body">
-                    <div class="item-placeholder-card">
-                        <p class="item-placeholder-label">Coming soon</p>
-                        <p class="item-placeholder-text" id="itemPlaceholderText">This page is a placeholder for now. Content for this experience will live here.</p>
+            </li>
+            <li class="exp-item">
+                <button class="exp-toggle" type="button" aria-expanded="false">
+                    <img class="exp-logo" src="visa.png" alt="">
+                    <div class="exp-text">
+                        <p class="exp-role">Software Engineer Intern</p>
+                        <p class="exp-org">Visa</p>
                     </div>
+                    <span class="exp-meta">
+                        <span class="exp-dates">Jun 2026 – Sept 2026</span>
+                        <span class="exp-chevron" aria-hidden="true">▾</span>
+                    </span>
+                </button>
+                <div class="exp-details" hidden>
+                    <p class="exp-desc">TBD</p>
+                    <p class="exp-link">TBD</p>
+                    <p class="exp-tags">TBD</p>
                 </div>
-            </div>
-        </div>
-
-    </div>
-
-    <!-- about modal -->
-    <div class="about-modal" id="aboutModal">
-        <div class="about-modal-backdrop" id="aboutModalBackdrop"></div>
-        <div class="about-modal-content">
-            <button class="about-modal-close" id="aboutModalClose">✕</button>
-            <div class="about-gallery">
-                <button class="gallery-nav gallery-prev" id="galleryPrev">&#8249;</button>
-                <div class="gallery-img-wrap">
-                    <img id="galleryImg" src="" alt="flora">
-                    <div class="gallery-dots" id="galleryDots"></div>
+            </li>
+            <li class="exp-item">
+                <button class="exp-toggle" type="button" aria-expanded="false">
+                    <img class="exp-logo" src="bideshi-logo.png" alt="">
+                    <div class="exp-text">
+                        <p class="exp-role">Software Engineer Intern</p>
+                        <p class="exp-org">Bideshi</p>
+                    </div>
+                    <span class="exp-meta">
+                        <span class="exp-dates">Jan 2026 – Jun 2026</span>
+                        <span class="exp-chevron" aria-hidden="true">▾</span>
+                    </span>
+                </button>
+                <div class="exp-details" hidden>
+                    <p class="exp-desc">TBD</p>
+                    <p class="exp-link">TBD</p>
+                    <p class="exp-tags">TBD</p>
                 </div>
-                <button class="gallery-nav gallery-next" id="galleryNext">&#8250;</button>
-            </div>
-            <div class="about-modal-body">
-                <p class="about-modal-stat">based in seattle, wa</p>
-                <p class="about-modal-bio">i love creating things that blend design and impact, traveling and exploring new cultures &amp; languages, teaching, and competing in hackathons. i’m focused on <strong>ai/ml</strong>, <strong>security</strong>, and <strong>software engineering</strong>, typically building with python, java, typescript, and html/css/js. also heavily intrigued by biological and physical sciences, i’d love to chat about any neuro-related research!</p>
-            </div>
-        </div>
-    </div>
-
-    <!-- right detail panel -->
-    <div class="detail-panel" id="detailPanel">
-        <button class="panel-close" id="panelClose" aria-label="Close">✕</button>
-        <div class="panel-inner" id="panelInner"></div>
-    </div>
-
-</div>
-
-<!-- mobile library toggle -->
-<button class="mobile-library-btn" id="mobileLibraryBtn" type="button" aria-label="Open library">
-    <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true">
-        <path d="M3 22a1 1 0 0 1-1-1V3a1 1 0 0 1 2 0v18a1 1 0 0 1-1 1zM15.5 2.134A1 1 0 0 0 14 3v18a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V6.464a1 1 0 0 0-.5-.866l-6-3.464zM9 2a1 1 0 0 0-1 1v18a1 1 0 1 0 2 0V3a1 1 0 0 0-1-1z"/>
-    </svg>
-</button>
-<div class="sidebar-backdrop" id="sidebarBackdrop"></div>
+            </li>
+            <li class="exp-item">
+                <button class="exp-toggle" type="button" aria-expanded="false">
+                    <img class="exp-logo" src="robinson.jpg" alt="">
+                    <div class="exp-text">
+                        <p class="exp-role">Teaching Assistant</p>
+                        <p class="exp-org">UW Robinson Center for Young Scholars</p>
+                    </div>
+                    <span class="exp-meta">
+                        <span class="exp-dates">Jul 2024, Jul 2025</span>
+                        <span class="exp-chevron" aria-hidden="true">▾</span>
+                    </span>
+                </button>
+                <div class="exp-details" hidden>
+                    <p class="exp-desc">TBD</p>
+                    <p class="exp-link">TBD</p>
+                    <p class="exp-tags">TBD</p>
+                </div>
+            </li>
+        </ul>
+    </section>
+</main>
 
 <script>
-    /* ── library placeholders (informal / misc) ── */
-    const libraryItems = [
-        {
-            id: "about-me",
-            title: "about me",
-            type: "Playlist",
-            filter: "projects",
-            subtitle: "Playlist • flora",
-            shape: "square",
-            color: "#6d2b47",
-            blurb: "Placeholder for a deeper about-me page."
-        },
-        {
-            id: "side-projects",
-            title: "side projects",
-            type: "Playlist",
-            filter: "projects",
-            subtitle: "Playlist • flora",
-            shape: "square",
-            color: "#3d5a80",
-            blurb: "Placeholder for personal builds, experiments, and weekend projects."
-        },
-        {
-            id: "adventures",
-            title: "adventures",
-            type: "Playlist",
-            filter: "events",
-            subtitle: "Playlist • flora",
-            shape: "square",
-            color: "#4a7c59",
-            blurb: "Placeholder for travel, trips, and adventures."
-        },
-        {
-            id: "teaching",
-            title: "teaching!",
-            type: "Playlist",
-            filter: "projects",
-            subtitle: "Playlist • flora",
-            shape: "square",
-            color: "#b85c38",
-            blurb: "Placeholder for teaching moments and classrooms."
-        },
-        {
-            id: "university",
-            title: "university",
-            type: "Playlist",
-            filter: "clubs",
-            subtitle: "Playlist • flora",
-            shape: "square",
-            color: "#2b3a6d",
-            blurb: "Placeholder for university life at UW."
-        },
-        {
-            id: "interests",
-            title: "interests",
-            type: "Playlist",
-            filter: "projects",
-            subtitle: "Playlist • flora",
-            shape: "square",
-            color: "#7b4f9e",
-            blurb: "Placeholder for hobbies, rabbit holes, and things I love."
-        },
-        {
-            id: "gallery",
-            title: "gallery",
-            type: "Playlist",
-            filter: "projects",
-            subtitle: "Playlist • flora",
-            shape: "square",
-            color: "#1a5c4a",
-            blurb: "Placeholder for photos and visual journals."
-        },
-        {
-            id: "resume",
-            title: "resume",
-            type: "Playlist",
-            filter: "projects",
-            subtitle: "Playlist • flora",
-            shape: "square",
-            color: "#5c4033",
-            blurb: "Placeholder for resume and CV."
-        }
-    ];
-
-    const experiences = [
-        {
-            company: "UW Department of Laboratory Medicine and Pathology",
-            role: "Research Assistant",
-            period: "Sept 2026 - Present",
-            color: "#ffffff",
-            image: "uwmed.jpg",
-            description: "Analyzing hippocampal electrophysiology datasets with Python to understand the brain's mechanisms of memory and decision-making.",
-            skills: ["python", "tbd 👀"]
-        },
-        {
-            company: "Gekko Corporation",
-            role: "Software Engineer Intern",
-            period: "Aug 2026 - Present",
-            color: "#ffffff",
-            image: "gekkoc.png",
-            description: "Recursive Language Models",
-            skills: ["ai", "software architecture"]
-        },
-        {
-            company: "Visa",
-            role: "Software Engineer Intern",
-            period: "Jun 2026 – Sept 2026",
-            color: "#ffffff",
-            image: "visa.png",
-            description: "Engineered a pluggable UI context extraction framework to deliver structured context to backend AI workflows, enhancing LLM reliability across analytics dashboards.",
-            skills: ["python", "langgraph", "react", "large language models", "ai-assisted coding", "software design"]
-        },
-        {
-            company: "Bideshi",
-            role: "Software Engineer Intern",
-            period: "Jan 2026 – Jun 2026",
-            color: "#ffffff",
-            image: "bideshi.jpg",
-            description: "Web development and UX focus, revamping website for <a href=\"https://www.instagram.com/the.bideshi/\" target=\"_blank\" rel=\"noopener\" style=\"color:#1DB954;text-decoration:none;\">@the.bideshi</a> and creating a language learning platform for Bengali speakers.",
-            skills: ["typescript", "UX research", "figma", "remote communication", "git"]
-        },
-        {
-            company: "UW Robinson Center for Young Scholars",
-            role: "Teaching Assistant",
-            period: "Jul 2024 – Jul 2025",
-            color: "#7b4f9e",
-            image: "robinson.jpg",
-            description: "Taught super cool classes for two summers: Physics of Roller Coasters and Introduction to Robotics.",
-            skills: ["teaching", "robotics", "physics", "getting over fear of roller coasters", "collaboration"]
-        },
-        {
-            company: "Alongside.care",
-            role: "Student Advisor",
-            period: "Jan 2024 – Jun 2025",
-            color: "#ffffff",
-            image: "alongside.jpg",
-            description: "Regularly tested new app features and provided UX insights to help design and improve an AI-powered mental health platform for young adults and schools.",
-            skills: ["usability testing"]
-        },
-        {
-            company: "MAPS Redmond",
-            role: "Sunday School Teacher",
-            period: "Sept 2023 – Present",
-            color: "#5c4033",
-            image: "maps.jpg",
-            description: "The highlight of my week: teaching first/third graders about how to be better versions of themselves and value their privileges and world around them.",
-            skills: ["teaching", "lesson planning", "communication", "punctuality", "working with children"]
-        },
-        {
-            company: "LePal.ai",
-            role: "UI/UX Design Intern",
-            period: "Aug 2024 – Sept 2024",
-            color: "#5c4033",
-            image: "lepal.jpg",
-            description: "Conducted user interviews and usability testing to improve app design for a startup.",
-            skills: ["UX research", "figma"]
-        }
-    ];
-
-    const education = [
-        {
-            company: "University of Washington",
-            role: "B.S. Computer Science",
-            period: "Expected June 2028",
-            color: "#4b2e83",
-            image: "uw-allen-school.png",
-            description: "Minor: Neural Computation & Engineering",
-            skills: ["data structures & algorithms", "java", "c", "foundational math"]
-        },
-        {
-            company: "Cisco Networking Academy",
-            role: "Extracurricular",
-            period: "Sept 2022 - June 2025",
-            color: "#ffffff",
-            image: "cisco.png",
-            description: "Completed CCNA, CCNP, and CCSP Security courses. Passed CCNA certification exam. Also completed AWS Cloud Foundations and CompTIA Security+ courses. Lab reports on <a href=\"https://github.com/florayasmin/cisco-labs\" target=\"_blank\" rel=\"noopener\" style=\"color:#1DB954;text-decoration:none;\">GitHub</a>.",
-            skills: ["ip routing/switching", "cybersecurity", "aws", "vpn", "wireless access points", "fortinet/palo alto firewalls"]
-        }
-    ];
-
-    const cardsRow = document.getElementById('cardsRow');
-    const educationRow = document.getElementById('educationRow');
-    const detailPanel = document.getElementById('detailPanel');
-    const panelInner = document.getElementById('panelInner');
-    const panelClose = document.getElementById('panelClose');
-    const mainView = document.getElementById('mainView');
-    const homeView = document.getElementById('homeView');
-    const itemView = document.getElementById('itemView');
-    const sidebarList = document.getElementById('sidebarList');
-    const backBtn = document.getElementById('backBtn');
-    const sidebar = document.getElementById('sidebar');
-    const sidebarToggle = document.getElementById('sidebarToggle');
-    const sidebarBackdrop = document.getElementById('sidebarBackdrop');
-    const mobileLibraryBtn = document.getElementById('mobileLibraryBtn');
-
-    let activeCard = null;
-    let activeLibraryId = null;
-    let currentFilter = 'all';
-
-    function setSidebarCollapsed(collapsed) {
-        sidebar.classList.toggle('sidebar-collapsed', collapsed);
-        sidebarToggle.setAttribute('aria-expanded', String(!collapsed));
-        sidebarToggle.setAttribute('aria-label', collapsed ? 'Expand library' : 'Collapse library');
-    }
-
-    sidebarToggle.addEventListener('click', () => {
-        setSidebarCollapsed(!sidebar.classList.contains('sidebar-collapsed'));
-    });
-
-    /* ── experience & education cards ── */
-    function renderCardRow(items, rowEl) {
-        items.forEach((exp) => {
-            const card = document.createElement('div');
-            card.className = 'card';
-            card.innerHTML = `
-                <div class="card-img" style="background:${exp.color}">
-                    ${exp.image
-                        ? `<img src="${exp.image}" alt="${exp.company}" style="width:100%;height:100%;object-fit:cover;border-radius:8px;">`
-                        : `<span class="card-letter">${exp.company[0]}</span>`}
-                </div>
-                <p class="card-company">${exp.company}</p>
-                <p class="card-role">${exp.role}</p>
-            `;
-            card.addEventListener('click', () => openPanel(exp, card));
-            rowEl.appendChild(card);
+    document.querySelectorAll('.exp-toggle').forEach((btn) => {
+        btn.addEventListener('click', () => {
+            const item = btn.closest('.exp-item');
+            const details = item.querySelector('.exp-details');
+            const open = btn.getAttribute('aria-expanded') === 'true';
+            btn.setAttribute('aria-expanded', String(!open));
+            item.classList.toggle('open', !open);
+            details.hidden = open;
         });
-    }
-
-    renderCardRow(experiences, cardsRow);
-    renderCardRow(education, educationRow);
-
-    function openPanel(exp, card) {
-        if (activeCard) activeCard.classList.remove('active');
-        activeCard = card;
-        card.classList.add('active');
-
-        panelInner.innerHTML = `
-            <div class="panel-img" style="background:${exp.color}">
-                ${exp.image
-                    ? `<img src="${exp.image}" alt="${exp.company}" style="width:100%;height:100%;object-fit:cover;">`
-                    : `<span class="panel-letter">${exp.company[0]}</span>`}
-            </div>
-            <p class="panel-company">${exp.company}</p>
-            <p class="panel-role">${exp.role}</p>
-            <p class="panel-period">${exp.period}</p>
-            <p class="panel-desc">${exp.description}</p>
-            <div class="panel-skills">
-                ${exp.skills.map(s => `<span class="skill">${s}</span>`).join('')}
-            </div>
-        `;
-
-        detailPanel.classList.add('open');
-        mainView.classList.add('shifted');
-    }
-
-    panelClose.addEventListener('click', () => {
-        detailPanel.classList.remove('open');
-        mainView.classList.remove('shifted');
-        if (activeCard) activeCard.classList.remove('active');
-        activeCard = null;
-    });
-
-    /* ── library sidebar ── */
-    function artHtml(item, sizeClass) {
-        const shapeClass = item.shape === 'circle' ? 'is-circle' : 'is-square';
-        return `<div class="lib-art ${shapeClass} ${sizeClass}" style="background:${item.color}" aria-hidden="true"></div>`;
-    }
-
-    function renderLibrary(filter) {
-        sidebarList.innerHTML = '';
-        const items = filter === 'all' ? libraryItems : libraryItems.filter(i => i.filter === filter);
-
-        items.forEach(item => {
-            const btn = document.createElement('button');
-            btn.className = 'lib-item' + (item.id === activeLibraryId ? ' active' : '');
-            btn.type = 'button';
-            btn.dataset.id = item.id;
-            btn.title = item.title;
-            btn.setAttribute('aria-label', item.title);
-            btn.innerHTML = `
-                ${artHtml(item, 'lib-art-sm')}
-                <span class="lib-text">
-                    <span class="lib-title">${item.title}</span>
-                    <span class="lib-sub">${item.subtitle}</span>
-                </span>
-            `;
-            btn.addEventListener('click', () => openLibraryItem(item.id, true));
-            sidebarList.appendChild(btn);
-        });
-    }
-
-    function showItem(item) {
-        activeLibraryId = item.id;
-        document.querySelectorAll('.lib-item').forEach(el => {
-            el.classList.toggle('active', el.dataset.id === item.id);
-        });
-
-        detailPanel.classList.remove('open');
-        mainView.classList.remove('shifted');
-        if (activeCard) activeCard.classList.remove('active');
-        activeCard = null;
-
-        document.getElementById('itemType').textContent = item.type;
-        document.getElementById('itemTitle').textContent = item.title;
-        document.getElementById('itemSubtitle').textContent = item.subtitle;
-        document.getElementById('itemPlaceholderText').textContent = item.blurb;
-        document.getElementById('itemBannerArt').innerHTML = artHtml(item, 'lib-art-lg');
-        document.getElementById('itemBanner').style.background =
-            `linear-gradient(transparent 0%, rgba(0,0,0,0.55) 100%), ${item.color}`;
-
-        homeView.classList.add('view-hidden');
-        itemView.classList.remove('view-hidden');
-        mainView.scrollTop = 0;
-        closeMobileSidebar();
-    }
-
-    function openLibraryItem(id, push) {
-        const item = libraryItems.find(i => i.id === id);
-        if (!item) return;
-        showItem(item);
-        if (push) history.pushState({ view: 'item', id }, '', `#/${id}`);
-    }
-
-    function goHome(push) {
-        activeLibraryId = null;
-        document.querySelectorAll('.lib-item').forEach(el => el.classList.remove('active'));
-        itemView.classList.add('view-hidden');
-        homeView.classList.remove('view-hidden');
-        mainView.scrollTop = 0;
-        if (push) history.pushState({ view: 'home' }, '', '#/');
-    }
-
-    backBtn.addEventListener('click', () => goHome(true));
-
-    document.querySelectorAll('#sidebarFilters .filter-chip').forEach(chip => {
-        chip.addEventListener('click', () => {
-            currentFilter = chip.dataset.filter;
-            document.querySelectorAll('#sidebarFilters .filter-chip').forEach(c => c.classList.remove('active'));
-            chip.classList.add('active');
-            renderLibrary(currentFilter);
-        });
-    });
-
-    renderLibrary('all');
-
-    /* ── routing ── */
-    window.addEventListener('popstate', (e) => {
-        const state = e.state;
-        if (state && state.view === 'item' && state.id) {
-            const item = libraryItems.find(i => i.id === state.id);
-            if (item) showItem(item);
-            else goHome(false);
-        } else {
-            goHome(false);
-        }
-    });
-
-    (function initRoute() {
-        const hash = location.hash.replace(/^#\/?/, '');
-        if (hash && libraryItems.some(i => i.id === hash)) {
-            showItem(libraryItems.find(i => i.id === hash));
-            history.replaceState({ view: 'item', id: hash }, '', `#/${hash}`);
-        } else {
-            goHome(false);
-            history.replaceState({ view: 'home' }, '', '#/');
-        }
-    })();
-
-    /* ── mobile sidebar ── */
-    function openMobileSidebar() {
-        sidebar.classList.add('open');
-        sidebarBackdrop.classList.add('open');
-    }
-    function closeMobileSidebar() {
-        sidebar.classList.remove('open');
-        sidebarBackdrop.classList.remove('open');
-    }
-    mobileLibraryBtn.addEventListener('click', openMobileSidebar);
-    sidebarBackdrop.addEventListener('click', closeMobileSidebar);
-
-    /* ── about modal gallery ── */
-    const aboutPhotos = ['about.jpg', 'physics.jpg', 'winfo.jpg', 'ammu.jpg', 'grad.jpg', 'banquet.jpeg', 'robotics.jpg', 'antigua.jpg', 'cisco.jpg'];
-    let currentPhoto = 0;
-
-    const aboutCard = document.getElementById('aboutCard');
-    const aboutModal = document.getElementById('aboutModal');
-    const aboutModalClose = document.getElementById('aboutModalClose');
-    const aboutModalBackdrop = document.getElementById('aboutModalBackdrop');
-    const galleryImg = document.getElementById('galleryImg');
-    const galleryPrev = document.getElementById('galleryPrev');
-    const galleryNext = document.getElementById('galleryNext');
-    const galleryDots = document.getElementById('galleryDots');
-
-    aboutPhotos.forEach((_, i) => {
-        const dot = document.createElement('span');
-        dot.className = 'gallery-dot';
-        dot.addEventListener('click', () => { currentPhoto = i; updateGalleryImg(); });
-        galleryDots.appendChild(dot);
-    });
-
-    function updateGalleryImg() {
-        galleryImg.src = aboutPhotos[currentPhoto];
-        document.querySelectorAll('.gallery-dot').forEach((d, i) => {
-            d.classList.toggle('active', i === currentPhoto);
-        });
-    }
-
-    function openAboutModal() {
-        currentPhoto = 0;
-        updateGalleryImg();
-        aboutModal.classList.add('open');
-    }
-
-    function closeAboutModal() {
-        aboutModal.classList.remove('open');
-    }
-
-    aboutCard.addEventListener('click', openAboutModal);
-    aboutModalClose.addEventListener('click', closeAboutModal);
-    aboutModalBackdrop.addEventListener('click', closeAboutModal);
-    galleryPrev.addEventListener('click', (e) => {
-        e.stopPropagation();
-        currentPhoto = (currentPhoto - 1 + aboutPhotos.length) % aboutPhotos.length;
-        updateGalleryImg();
-    });
-    galleryNext.addEventListener('click', (e) => {
-        e.stopPropagation();
-        currentPhoto = (currentPhoto + 1) % aboutPhotos.length;
-        updateGalleryImg();
-    });
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape') {
-            if (aboutModal.classList.contains('open')) closeAboutModal();
-            else if (sidebar.classList.contains('open')) closeMobileSidebar();
-            else if (!itemView.classList.contains('view-hidden')) goHome(true);
-        }
-        if (!aboutModal.classList.contains('open')) return;
-        if (e.key === 'ArrowLeft') { currentPhoto = (currentPhoto - 1 + aboutPhotos.length) % aboutPhotos.length; updateGalleryImg(); }
-        if (e.key === 'ArrowRight') { currentPhoto = (currentPhoto + 1) % aboutPhotos.length; updateGalleryImg(); }
-    });
-
-    // typewriter effect
-    (function() {
-        const text = "flora yasmin";
-        const el = document.getElementById('typewriter');
-        const cursor = document.querySelector('.type-cursor');
-        let i = 0;
-        function type() {
-            if (i < text.length) {
-                el.textContent += text[i++];
-                setTimeout(type, 80);
-            } else {
-                setTimeout(() => cursor.classList.add('fade-out'), 2400);
-            }
-        }
-        setTimeout(type, 250);
-    })();
-
-    // swipe support
-    let touchStartX = 0;
-    const galleryWrap = document.querySelector('.gallery-img-wrap');
-    galleryWrap.addEventListener('touchstart', (e) => { touchStartX = e.touches[0].clientX; }, { passive: true });
-    galleryWrap.addEventListener('touchend', (e) => {
-        const dx = e.changedTouches[0].clientX - touchStartX;
-        if (Math.abs(dx) < 30) return;
-        if (dx < 0) { currentPhoto = (currentPhoto + 1) % aboutPhotos.length; }
-        else { currentPhoto = (currentPhoto - 1 + aboutPhotos.length) % aboutPhotos.length; }
-        updateGalleryImg();
     });
 </script>
 

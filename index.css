@@ -549,20 +549,27 @@ img {
 
 /* Gallery template (Italy and future special places) */
 .place-modal.has-gallery .place-modal-card {
-    width: min(820px, calc(100vw - 40px));
-    max-height: min(90vh, 860px);
-    padding: 20px 22px 18px;
+    width: min(760px, calc(100vw - 48px));
+    max-height: min(84vh, 780px);
+    padding: 18px 20px 16px;
     display: flex;
     flex-direction: column;
     overflow: hidden;
 }
 
+.place-modal-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 12px;
+    flex-shrink: 0;
+}
+
 .place-modal-close {
-    position: absolute;
-    top: 12px;
-    right: 12px;
-    width: 30px;
-    height: 30px;
+    position: static;
+    flex: 0 0 auto;
+    width: 28px;
+    height: 28px;
     border: none;
     border-radius: 50%;
     background: var(--modal-chip);
@@ -572,6 +579,16 @@ img {
     font-size: 13px;
     line-height: 1;
     z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    margin-left: auto;
+}
+
+.place-modal.has-gallery .place-modal-close {
+    width: 28px;
+    height: 28px;
 }
 
 .place-modal-close:hover {
@@ -582,9 +599,11 @@ img {
 .place-modal-heading {
     font-size: 30px;
     font-weight: 700;
-    margin-bottom: 12px;
-    padding-right: 36px;
+    margin-bottom: 0;
+    padding-right: 0;
     line-height: 1.25;
+    flex: 1 1 auto;
+    min-width: 0;
 }
 
 .place-modal.has-gallery .place-modal-heading {
@@ -593,9 +612,8 @@ img {
     align-items: baseline;
     column-gap: 0.3em;
     row-gap: 0.15em;
-    margin-bottom: 14px;
-    flex-shrink: 0;
-    font-size: 34px;
+    margin-bottom: 0;
+    font-size: 32px;
 }
 
 .place-modal-name {

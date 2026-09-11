@@ -547,24 +547,31 @@ img {
     color: var(--text);
 }
 
+/* Gallery template (Italy and future special places) */
 .place-modal.has-gallery .place-modal-card {
-    width: min(720px, 100%);
-    max-height: min(85vh, 780px);
+    width: min(820px, calc(100vw - 40px));
+    max-height: min(90vh, 860px);
+    padding: 20px 22px 18px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
 }
 
 .place-modal-close {
     position: absolute;
-    top: 14px;
-    right: 14px;
-    width: 32px;
-    height: 32px;
+    top: 12px;
+    right: 12px;
+    width: 30px;
+    height: 30px;
     border: none;
     border-radius: 50%;
     background: var(--modal-chip);
     color: var(--text);
     cursor: pointer;
     font-family: inherit;
-    font-size: 14px;
+    font-size: 13px;
+    line-height: 1;
+    z-index: 2;
 }
 
 .place-modal-close:hover {
@@ -577,11 +584,18 @@ img {
     font-weight: 700;
     margin-bottom: 12px;
     padding-right: 36px;
+    line-height: 1.25;
+}
+
+.place-modal.has-gallery .place-modal-heading {
     display: flex;
     flex-wrap: wrap;
     align-items: baseline;
-    gap: 0.2em 0.28em;
-    line-height: 1.25;
+    column-gap: 0.3em;
+    row-gap: 0.15em;
+    margin-bottom: 14px;
+    flex-shrink: 0;
+    font-size: 34px;
 }
 
 .place-modal-name {
@@ -590,7 +604,7 @@ img {
 }
 
 .place-modal-tagline {
-    font-size: 0.58em;
+    font-size: 16px;
     font-weight: 400;
     color: var(--text-muted);
     line-height: 1.35;
@@ -618,17 +632,52 @@ img {
 }
 
 .place-modal.has-gallery .place-modal-photos {
-    grid-template-columns: repeat(4, 1fr);
-    gap: 8px;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 6px;
+    flex: 1 1 auto;
+    min-height: 0;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    padding-right: 2px;
+    align-content: start;
 }
 
-.place-modal-photos img {
+.place-modal-photo {
+    position: relative;
     width: 100%;
     aspect-ratio: 1 / 1;
+    overflow: hidden;
+    background: var(--modal-chip);
+    border-radius: 0;
+}
+
+/* Fallback square box for browsers that mishandle aspect-ratio on grid children */
+.place-modal.has-gallery .place-modal-photo {
+    height: 0;
+    padding-bottom: 100%;
+    aspect-ratio: auto;
+}
+
+.place-modal-photo img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    max-width: none;
     object-fit: cover;
     object-position: center;
-    border-radius: 0;
     display: block;
+    border-radius: 0;
+}
+
+.place-modal:not(.has-gallery) .place-modal-photo {
+    height: auto;
+    padding-bottom: 0;
+    aspect-ratio: 1 / 1;
+}
+
+.place-modal:not(.has-gallery) .place-modal-photo img {
+    border-radius: 8px;
 }
 
 .photo-slot {
@@ -674,8 +723,18 @@ img {
 }
 
 @media (max-width: 600px) {
+    .place-modal.has-gallery .place-modal-card {
+        width: min(520px, calc(100vw - 24px));
+        padding: 18px 16px 14px;
+    }
+
+    .place-modal.has-gallery .place-modal-heading {
+        font-size: 28px;
+    }
+
     .place-modal.has-gallery .place-modal-photos {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 5px;
     }
 
     .place-modal-card {

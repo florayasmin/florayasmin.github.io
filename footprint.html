@@ -8,7 +8,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="index.css?v=gallery1">
     <script src="theme.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
     <script src="https://cdn.jsdelivr.net/npm/topojson-client@3"></script>
@@ -114,7 +114,7 @@
     const markers = [
         { place: "Antigua and Barbuda", country: "Antigua and Barbuda", coords: [-61.7969, 17.0608], special: true, story: "TBD — story from Antigua and Barbuda goes here.", photos: [] },
         { place: "Dhaka", country: "Bangladesh", coords: [90.3563, 23.6850], special: true, story: "TBD — story from Dhaka goes here.", photos: [] },
-        { place: "Italy", country: "Italy", coords: [12.5674, 41.8719], special: true, story: "", tagline: "saw some of the greatest artistic talent to ever exist.", photos: [
+        { place: "Italy", country: "Italy", coords: [12.5674, 41.8719], special: true, gallery: true, story: "", tagline: "saw some of the greatest artistic talent to ever exist.", photos: [
             "photos/italy/01-milan-duomo.jpg",
             "photos/italy/02-pantheon.jpg",
             "photos/italy/03-david.jpg",
@@ -227,19 +227,24 @@
         modalPhotos.innerHTML = "";
 
         const photos = place.photos || [];
-        modal.classList.toggle("has-gallery", photos.length > 4);
+        const isGallery = place.gallery === true || photos.length >= 8;
+        modal.classList.toggle("has-gallery", isGallery);
 
         if (photos.length) {
             photos.forEach((photo) => {
                 const src = typeof photo === "string" ? photo : photo.src;
+                const tile = document.createElement("div");
+                tile.className = "place-modal-photo";
                 const img = document.createElement("img");
                 img.src = src;
-                img.alt = place.name || place.place;
+                img.alt = place.name || place.place || name;
                 img.loading = "lazy";
-                if (photo && photo.position) {
+                img.draggable = false;
+                if (typeof photo === "object" && photo.position) {
                     img.style.objectPosition = photo.position;
                 }
-                modalPhotos.appendChild(img);
+                tile.appendChild(img);
+                modalPhotos.appendChild(tile);
             });
         } else {
             for (let i = 0; i < 2; i++) {

@@ -46,7 +46,10 @@
     <div class="place-modal-backdrop" id="placeModalBackdrop"></div>
     <div class="place-modal-card" role="dialog" aria-modal="true" aria-labelledby="placeModalTitle">
         <button class="place-modal-close" id="placeModalClose" type="button" aria-label="Close">✕</button>
-        <h2 id="placeModalTitle"></h2>
+        <h2 class="place-modal-heading" id="placeModalTitle">
+            <span class="place-modal-name" id="placeModalName"></span>
+            <span class="place-modal-tagline" id="placeModalTagline" hidden></span>
+        </h2>
         <p class="place-modal-story" id="placeModalStory"></p>
         <div class="place-modal-photos" id="placeModalPhotos"></div>
     </div>
@@ -67,7 +70,7 @@
         },
         "380": {
             name: "Italy",
-            story: "TBD — story from Italy goes here.",
+            story: "",
             photos: []
         },
         "682": {
@@ -111,7 +114,20 @@
     const markers = [
         { place: "Antigua and Barbuda", country: "Antigua and Barbuda", coords: [-61.7969, 17.0608], special: true, story: "TBD — story from Antigua and Barbuda goes here.", photos: [] },
         { place: "Dhaka", country: "Bangladesh", coords: [90.3563, 23.6850], special: true, story: "TBD — story from Dhaka goes here.", photos: [] },
-        { place: "Italy", country: "Italy", coords: [12.5674, 41.8719], special: true, story: "TBD — story from Italy goes here.", photos: [] },
+        { place: "Italy", country: "Italy", coords: [12.5674, 41.8719], special: true, story: "", tagline: "saw some of the greatest artistic talent to ever exist.", photos: [
+            "photos/italy/01-milan-duomo.jpg",
+            "photos/italy/02-pantheon.jpg",
+            "photos/italy/03-david.jpg",
+            "photos/italy/04-gelato.jpg",
+            "photos/italy/05-pisa.jpg",
+            "photos/italy/06-birth-of-venus.jpg",
+            "photos/italy/07-ponte-vecchio.jpg",
+            "photos/italy/08-trevi.jpg",
+            "photos/italy/09-saint-teresa.jpg",
+            { src: "photos/italy/10-florence-facade.jpg", position: "center 78%" },
+            "photos/italy/11-colosseum.jpg",
+            { src: "photos/italy/12-florence-dome.jpg", position: "center 82%" }
+        ] },
         { place: "Saudi Arabia", country: "Saudi Arabia", coords: [45.0792, 23.8859], special: true, story: "TBD — story from Saudi Arabia goes here.", photos: [] },
         { place: "London", country: "England", coords: [-0.1276, 51.5074] },
         { place: "Dubai", country: "United Arab Emirates", coords: [55.2708, 25.2048] },
@@ -192,22 +208,37 @@
     }
 
     const modal = document.getElementById("placeModal");
-    const modalTitle = document.getElementById("placeModalTitle");
+    const modalName = document.getElementById("placeModalName");
+    const modalTagline = document.getElementById("placeModalTagline");
     const modalStory = document.getElementById("placeModalStory");
     const modalPhotos = document.getElementById("placeModalPhotos");
     const modalClose = document.getElementById("placeModalClose");
     const modalBackdrop = document.getElementById("placeModalBackdrop");
 
     function openPlace(place) {
-        modalTitle.textContent = place.name || markerLabel(place);
-        modalStory.textContent = place.story || "TBD";
+        const name = place.name || markerLabel(place);
+        modalName.textContent = name;
+        const tagline = (place.tagline || "").trim();
+        modalTagline.textContent = tagline;
+        modalTagline.hidden = !tagline;
+        const story = place.story || "";
+        modalStory.textContent = story;
+        modalStory.hidden = !story.trim();
         modalPhotos.innerHTML = "";
 
-        if (place.photos && place.photos.length) {
-            place.photos.forEach((src) => {
+        const photos = place.photos || [];
+        modal.classList.toggle("has-gallery", photos.length > 4);
+
+        if (photos.length) {
+            photos.forEach((photo) => {
+                const src = typeof photo === "string" ? photo : photo.src;
                 const img = document.createElement("img");
                 img.src = src;
                 img.alt = place.name || place.place;
+                img.loading = "lazy";
+                if (photo && photo.position) {
+                    img.style.objectPosition = photo.position;
+                }
                 modalPhotos.appendChild(img);
             });
         } else {
@@ -225,6 +256,7 @@
 
     function closePlace() {
         modal.hidden = true;
+        modal.classList.remove("has-gallery");
         document.body.style.overflow = "";
     }
 

@@ -547,6 +547,11 @@ img {
     color: var(--text);
 }
 
+.place-modal.has-gallery .place-modal-card {
+    width: min(720px, 100%);
+    max-height: min(85vh, 780px);
+}
+
 .place-modal-close {
     position: absolute;
     top: 14px;
@@ -566,11 +571,33 @@ img {
     opacity: 0.85;
 }
 
-.place-modal-card h2 {
+.place-modal-card h2,
+.place-modal-heading {
     font-size: 30px;
     font-weight: 700;
     margin-bottom: 12px;
     padding-right: 36px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.2em 0.28em;
+    line-height: 1.25;
+}
+
+.place-modal-name {
+    font-weight: 700;
+    color: var(--text);
+}
+
+.place-modal-tagline {
+    font-size: 0.58em;
+    font-weight: 400;
+    color: var(--text-muted);
+    line-height: 1.35;
+}
+
+.place-modal-tagline[hidden] {
+    display: none;
 }
 
 .place-modal-story {
@@ -580,21 +607,32 @@ img {
     line-height: 1.6;
 }
 
+.place-modal-story[hidden] {
+    display: none;
+}
+
 .place-modal-photos {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 10px;
 }
 
+.place-modal.has-gallery .place-modal-photos {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+}
+
 .place-modal-photos img {
     width: 100%;
-    aspect-ratio: 4 / 3;
+    aspect-ratio: 1 / 1;
     object-fit: cover;
-    border-radius: 8px;
+    object-position: center;
+    border-radius: 0;
+    display: block;
 }
 
 .photo-slot {
-    aspect-ratio: 4 / 3;
+    aspect-ratio: 1 / 1;
     border-radius: 8px;
     background: var(--modal-chip);
     border: 1px dashed var(--map-visited);
@@ -636,8 +674,8 @@ img {
 }
 
 @media (max-width: 600px) {
-    .place-modal-photos {
-        grid-template-columns: 1fr;
+    .place-modal.has-gallery .place-modal-photos {
+        grid-template-columns: repeat(2, 1fr);
     }
 
     .place-modal-card {

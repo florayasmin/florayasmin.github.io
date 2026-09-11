@@ -524,9 +524,9 @@ img {
 }
 
 .place-modal.has-gallery {
-    /* Keep vertical centering, but bias the card downward so the page intro stays visible */
+    /* Bias slightly downward so only the first intro line stays visible above */
     align-items: center;
-    padding-top: 72px;
+    padding-top: 48px;
     padding-bottom: 24px;
     overflow-y: auto;
 }
@@ -559,7 +559,7 @@ img {
 .place-modal.has-gallery .place-modal-card {
     width: min(760px, calc(100vw - 48px));
     max-height: min(84vh, 780px);
-    margin-top: 56px;
+    margin-top: 28px;
     padding: 18px 20px 16px;
     display: flex;
     flex-direction: column;

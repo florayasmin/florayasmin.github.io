@@ -774,7 +774,7 @@ img {
 
 /* ── blog ── */
 .blog-page {
-    width: min(580px, calc(100% - 96px));
+    width: min(600px, calc(100% - 96px));
     margin: 0 auto;
     padding: 36px 0 16px;
     flex: 1;
@@ -970,7 +970,7 @@ img {
 
 @media (max-width: 640px) {
     .blog-page {
-        width: min(580px, calc(100% - 40px));
+        width: min(600px, calc(100% - 40px));
         padding-top: 48px;
     }
 

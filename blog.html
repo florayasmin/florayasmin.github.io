@@ -22,19 +22,9 @@
     </nav>
 </header>
 
-<main class="blog-page">
+<main class="placeholder-page">
     <h1>Blog</h1>
-    <div class="blog-viewport">
-        <div class="blog-track" id="blog-track"></div>
-    </div>
-    <nav class="blog-pager" id="blog-pager" aria-label="Blog pages">
-        <button class="blog-arrow" type="button" data-dir="-1" aria-label="Previous page" disabled>
-            <svg viewBox="0 0 16 16" width="11" height="11" aria-hidden="true"><path d="M10.2 2.8 5.2 8l5 5.2" fill="none" stroke="currentColor" stroke-width="1.15" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </button>
-        <button class="blog-arrow" type="button" data-dir="1" aria-label="Next page" disabled>
-            <svg viewBox="0 0 16 16" width="11" height="11" aria-hidden="true"><path d="M5.8 2.8 10.8 8l-5 5.2" fill="none" stroke="currentColor" stroke-width="1.15" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </button>
-    </nav>
+    <p>Coming soon.</p>
 </main>
 
 <footer class="site-footer">
@@ -42,90 +32,6 @@
     <span class="footer-sep">·</span>
     <span>Updated: September 2026</span>
 </footer>
-
-<script>
-    const posts = [
-        {
-            href: "blog/my-first-internship-experience.html",
-            title: "my first internship",
-            date: "September 28, 2026",
-            excerpt: "successes, setbacks, and what i learned while working at \"vfaang\"",
-            image: "blog/visa-internship.jpg",
-            imageAlt: "Flora at Mount Rainier in front of a Visa sign"
-        }
-    ];
-
-    const perPage = 5;
-    const pageCount = Math.max(1, Math.ceil(posts.length / perPage));
-    const track = document.getElementById("blog-track");
-    const pager = document.getElementById("blog-pager");
-    const arrows = document.querySelectorAll(".blog-arrow");
-    let page = 0;
-
-    function makeCard(post) {
-        const card = document.createElement("a");
-        card.className = "blog-card";
-        card.href = post.href;
-        const copy = document.createElement("div");
-        copy.className = "blog-card-copy";
-        copy.innerHTML = "<h2></h2>" + '<p class="blog-card-excerpt"></p>' + '<p class="blog-card-date"></p>';
-        copy.querySelector("h2").textContent = post.title;
-        copy.querySelector(".blog-card-excerpt").textContent = post.excerpt;
-        copy.querySelector(".blog-card-date").textContent = post.date;
-        card.appendChild(copy);
-        if (post.image) {
-            const img = document.createElement("img");
-            img.className = "blog-card-photo";
-            img.src = post.image;
-            img.alt = post.imageAlt || "";
-            card.appendChild(img);
-        }
-        return card;
-    }
-
-    for (let i = 0; i < pageCount; i++) {
-        const group = document.createElement("div");
-        group.className = "blog-page-group";
-        posts.slice(i * perPage, (i + 1) * perPage).forEach((post) => {
-            group.appendChild(makeCard(post));
-        });
-        track.appendChild(group);
-    }
-
-    const nextArrow = pager.querySelector('[data-dir="1"]');
-    for (let i = 0; i < pageCount; i++) {
-        const button = document.createElement("button");
-        button.type = "button";
-        button.className = "blog-page-num";
-        button.textContent = String(i + 1);
-        button.addEventListener("click", () => showPage(i));
-        pager.insertBefore(button, nextArrow);
-    }
-
-    function showPage(next) {
-        page = Math.max(0, Math.min(pageCount - 1, next));
-        track.style.transform = "translateX(" + (-page * 100) + "%)";
-        arrows.forEach((arrow) => {
-            const dir = Number(arrow.dataset.dir);
-            arrow.disabled = page + dir < 0 || page + dir >= pageCount;
-        });
-        pager.querySelectorAll(".blog-page-num").forEach((button, index) => {
-            if (index === page) {
-                button.setAttribute("aria-current", "page");
-            } else {
-                button.removeAttribute("aria-current");
-            }
-        });
-    }
-
-    arrows.forEach((arrow) => {
-        arrow.addEventListener("click", () => {
-            showPage(page + Number(arrow.dataset.dir));
-        });
-    });
-
-    showPage(0);
-</script>
 
 </body>
 </html>

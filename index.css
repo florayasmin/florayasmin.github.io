@@ -684,6 +684,14 @@ img {
     aspect-ratio: auto;
 }
 
+/* Tall tile fills the right-hand column across three rows */
+.place-modal.has-gallery .place-modal-photo.tall {
+    grid-column: 4;
+    grid-row: 1 / span 3;
+    height: auto;
+    padding-bottom: 0;
+}
+
 .place-modal-photo img {
     position: absolute;
     inset: 0;

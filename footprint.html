@@ -8,7 +8,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="index.css?v=gallery10">
+    <link rel="stylesheet" href="index.css?v=gallery11">
     <script src="theme.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
     <script src="https://cdn.jsdelivr.net/npm/topojson-client@3"></script>
@@ -26,7 +26,7 @@
 
 <main class="footprint-page">
     <p class="footprint-instruction">A peek into the world I've experienced so far :)</p>
-    <p class="footprint-sub">Click a highlighted country to receive a little snippet from that place.</p>
+    <p class="footprint-sub">Click a highlighted country to see a little snippet from that place.</p>
 
     <div class="map-wrap" id="mapWrap">
         <svg id="worldMap" role="img" aria-label="World map of places Flora has visited"></svg>
@@ -39,7 +39,7 @@
 <footer class="site-footer">
     <button type="button" class="theme-toggle">Switch to dark mode</button>
     <span class="footer-sep">·</span>
-    <span>Updated: September 2026</span>
+    <span>Updated: October 2026</span>
 </footer>
 
 <div class="place-modal" id="placeModal" hidden>
@@ -130,7 +130,18 @@
             "photos/italy/11-colosseum.jpg",
             { src: "photos/italy/12-florence-dome.jpg", position: "center 82%" }
         ] },
-        { place: "Saudi Arabia", country: "Saudi Arabia", coords: [45.0792, 23.8859] },
+        { place: "Saudi Arabia", country: "Saudi Arabia", coords: [45.0792, 23.8859], special: true, gallery: true, story: "", tagline: "the most beautiful place on earth.", photos: [
+            { src: "photos/saudi-arabia/10-quba-palm.jpg", tall: true, position: "87% center" },
+            { src: "photos/saudi-arabia/01-makkah-aerial.jpg", position: "center 88%" },
+            { src: "photos/saudi-arabia/02-kaaba.jpg", position: "center 14%" },
+            { src: "photos/saudi-arabia/03-clock-tower.jpg", position: "center 90%" },
+            { src: "photos/saudi-arabia/04-clock-tower-view.jpg", position: "center 86%" },
+            { src: "photos/saudi-arabia/05-arches-dome.jpg", position: "center 78%" },
+            { src: "photos/saudi-arabia/06-white-mosque.jpg", position: "center 80%" },
+            { src: "photos/saudi-arabia/07-madinah-minarets.jpg", position: "center 80%" },
+            "photos/saudi-arabia/08-mirror-selfie.jpg",
+            { src: "photos/saudi-arabia/09-umbrellas-minaret.jpg", position: "center 46%" }
+        ] },
         { place: "London", country: "England", coords: [-0.1276, 51.5074] },
         { place: "Dubai", country: "United Arab Emirates", coords: [55.2708, 25.2048] },
         { place: "Istanbul", country: "Turkey", coords: [28.9784, 41.0082] },
@@ -237,6 +248,9 @@
                 const src = typeof photo === "string" ? photo : photo.src;
                 const tile = document.createElement("div");
                 tile.className = "place-modal-photo";
+                if (typeof photo === "object" && photo.tall) {
+                    tile.classList.add("tall");
+                }
                 const img = document.createElement("img");
                 img.src = src;
                 img.alt = place.name || place.place || name;
